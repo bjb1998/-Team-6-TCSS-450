@@ -6,6 +6,7 @@ Group members are as follows:
 Brandon J Brassfield
 Roberto Beltran Cortez
 Hao Dinh
+Anas Gherfal
 ...
 ...
 
