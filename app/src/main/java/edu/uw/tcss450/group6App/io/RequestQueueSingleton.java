@@ -2,9 +2,7 @@ package edu.uw.tcss450.group6App.io;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-
 import androidx.collection.LruCache;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -19,7 +17,7 @@ public class RequestQueueSingleton {
 
     private RequestQueueSingleton(Context context) {
         RequestQueueSingleton.context = context;
-        mRequestQueue = getmRequestQueue();
+        mRequestQueue = getRequestQueue();
 
         mImageLoader = new ImageLoader(mRequestQueue,
                 new ImageLoader.ImageCache() {
@@ -45,7 +43,7 @@ public class RequestQueueSingleton {
         return instance;
     }
 
-    public RequestQueue getmRequestQueue() {
+    public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
             // getApplicationContext() is key, it keeps you from leaking the
             // Activity or BroadcastReceiver if someone passes one in.
@@ -55,10 +53,10 @@ public class RequestQueueSingleton {
     }
 
     public <T> void addToRequestQueue(Request<T> req) {
-        getmRequestQueue().add(req);
+        getRequestQueue().add(req);
     }
 
-    public ImageLoader getmImageLoader() {
+    public ImageLoader getImageLoader() {
         return mImageLoader;
     }
 }
