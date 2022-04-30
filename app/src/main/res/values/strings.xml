@@ -11,6 +11,10 @@
     <string name="display_header_title">Phish Shows Welcomes:</string>
     <string name="image_description_logo">The Phish Logo</string>
 
+    <string name="action_settings">Settings</string>
+    <string name="title_incrementor">Incrementor</string>
+    <string name="action_link">Full Post</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
