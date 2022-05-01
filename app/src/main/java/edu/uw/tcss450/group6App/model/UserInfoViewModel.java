@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+/**
+ * Holds user info needed for account.
+ */
 public class UserInfoViewModel extends ViewModel {
 
     private final String mEmail;

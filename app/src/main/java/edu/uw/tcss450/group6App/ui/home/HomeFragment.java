@@ -1,4 +1,4 @@
-package edu.uw.tcss450.group6App.ui;
+package edu.uw.tcss450.group6App.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
