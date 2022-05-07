@@ -124,6 +124,7 @@ public class RegisterFragment extends Fragment {
         mRegisterModel.connect(
                 binding.editFirst.getText().toString(),
                 binding.editLast.getText().toString(),
+                binding.editUsername.getText().toString(),
                 binding.editEmail.getText().toString(),
                 binding.editPassword1.getText().toString());
         //This is an Asynchronous call. No statements after should rely on the
@@ -151,9 +152,16 @@ public class RegisterFragment extends Fragment {
         if (response.length() > 0) {
             if (response.has("code")) {
                 try {
-                    binding.editEmail.setError(
-                            "Error Authenticating: " +
-                                    response.getJSONObject("data").getString("message"));
+                    final String msg = response.getJSONObject("data").getString("message");
+                    if(msg.equals("Email exists"))
+                        binding.editEmail.setError(
+                                "Error Authenticating: " +
+                                        response.getJSONObject("data").getString("message"));
+                    else if(msg.equals("Username exists")){
+                        binding.editUsername.setError(
+                                "Error Authenticating: " +
+                                        response.getJSONObject("data").getString("message"));
+                    }
                 } catch (JSONException e) {
                     Log.e("JSON Parse Error", e.getMessage());
                 }
