@@ -15,7 +15,11 @@
         android:id="@+id/navigation_contacts"
         android:name="edu.uw.tcss450.group6App.ui.contacts.ContactsFragment"
         android:label="@string/title_contacts"
-        tools:layout="@layout/fragment_contacts" />
+        tools:layout="@layout/fragment_contacts" >
+        <action
+            android:id="@+id/action_navigation_contacts_to_navigation_contacts_search"
+            app:destination="@id/navigation_contacts_search" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_weather"
         android:name="edu.uw.tcss450.group6App.ui.weather.WeatherFragment"
@@ -26,5 +30,10 @@
         android:name="edu.uw.tcss450.group6App.ui.chat.ChatFragment"
         android:label="@string/title_chat"
         tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/navigation_contacts_search"
+        android:name="edu.uw.tcss450.group6App.ui.contacts.search.ContactsSearchFragment"
+        android:label="contacts_search_fragment"
+        tools:layout="@layout/contacts_search_fragment" />
 
 </navigation>
