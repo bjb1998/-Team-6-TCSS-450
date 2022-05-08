@@ -15,10 +15,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ContactsSearchViewModel extends AndroidViewModel {
@@ -67,27 +70,34 @@ public class ContactsSearchViewModel extends AndroidViewModel {
 
     }
 
+    public List<ContactInfo> convertToList(final JSONObject response) {
+        List<ContactInfo> list = new ArrayList<>();
+        try {
+            Log.d("HERES THE ROWS!!!!!", response.toString());
+            Log.d("HERES THE OBJ!!!!!", response.getJSONObject("message").getJSONArray("rows").toString());
+            JSONArray messages = response.getJSONObject("message").getJSONArray("rows");
+            for(int i = 0; i < messages.length(); i++) {
+                JSONObject message = messages.getJSONObject(i);
+                ContactInfo cContact = new ContactInfo(
+                        message.getString("firstname"),
+                        message.getString("lastname"),
+                        message.getString("username")
+                );
+                list.add(cContact);
+            }
+            //inform observers of the change (setValue)
+            return list;
+        }catch (JSONException e) {
+            Log.e("JSON PARSE ERROR", "Found in handle Success ContactViewModel");
+            Log.e("JSON PARSE ERROR", "Error: " + e.getMessage());
+        }
+        return new ArrayList<>();
+    }
+
     private void handleError(final VolleyError error) {
-        if (Objects.isNull(error.networkResponse)) {
-            try {
-                mUsers.setValue(new JSONObject("{" +
-                        "error:\"" + error.getMessage() +
-                        "\"}"));
-            } catch (JSONException e) {
-                Log.e("JSON PARSE", "JSON Parse Error in handleError");
-            }
-        }
-        else {
-            String data = new String(error.networkResponse.data, Charset.defaultCharset())
-                    .replace('\"', '\'');
-            try {
-                JSONObject response = new JSONObject();
-                response.put("code", error.networkResponse.statusCode);
-                response.put("data", new JSONObject(data));
-                mUsers.setValue(response);
-            } catch (JSONException e) {
-                Log.e("JSON PARSE", "JSON Parse Error in handleError");
-            }
-        }
+        //you should add much better error handling in a production release.
+        //i.e. YOUR PROJECT
+        Log.e("CONNECTION ERROR", error.getLocalizedMessage());
+        throw new IllegalStateException(error.getMessage());
     }
 }

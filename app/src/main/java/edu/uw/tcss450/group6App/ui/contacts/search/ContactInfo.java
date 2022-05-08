@@ -19,21 +19,6 @@ public class ContactInfo implements Serializable {
         mDisplayName = displayName;
     }
 
-    /**
-     * Static factory method to turn a properly formatted JSON String into a
-     * ContactInfo object.
-     * @param cmAsJson the String to be parsed into a ContactInfo Object.
-     * @return a ContactInfo Object with the details contained in the JSON String.
-     * @throws JSONException when cmAsString cannot be parsed into a ContactInfo.
-     */
-    public static ContactInfo createFromJsonString(final String cmAsJson) throws JSONException {
-        final JSONObject msg = new JSONObject(cmAsJson);
-        return new ContactInfo(
-                msg.getString("firstname"),
-                msg.getString("lastname"),
-                msg.getString("username"));
-    }
-
     public String getFName() {
         return mFName;
     }
@@ -42,7 +27,7 @@ public class ContactInfo implements Serializable {
         return mLName;
     }
 
-    public String getDisplayName() {
+    public String getUsername() {
         return mDisplayName;
     }
 

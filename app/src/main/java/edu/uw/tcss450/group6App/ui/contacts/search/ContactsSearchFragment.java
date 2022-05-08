@@ -20,13 +20,13 @@ import org.json.JSONObject;
 import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentChatBinding;
 import edu.uw.tcss450.group6App.databinding.FragmentContactsBinding;
-import edu.uw.tcss450.group6App.databinding.ContactsSearchFragmentBinding;
+import edu.uw.tcss450.group6App.databinding.FragmentContactSearchBinding;
 import edu.uw.tcss450.group6App.ui.chat.ChatRecyclerViewAdapter;
 import edu.uw.tcss450.group6App.ui.contacts.ContactsFragmentDirections;
 
 public class ContactsSearchFragment extends Fragment {
 
-    private ContactsSearchFragmentBinding binding;
+    private FragmentContactSearchBinding binding;
     private ContactsSearchViewModel mContactsSearchViewModel;
 
     public ContactsSearchFragment(){
@@ -44,7 +44,7 @@ public class ContactsSearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = ContactsSearchFragmentBinding.inflate(inflater);
+        binding = FragmentContactSearchBinding.inflate(inflater);
         return binding.getRoot();
     }
 
@@ -59,11 +59,11 @@ public class ContactsSearchFragment extends Fragment {
         mContactsSearchViewModel.addResponseObserver(getViewLifecycleOwner(),
                 this::observeResponse);
 
-        //todo make this shit work
-        //final RecyclerView rv = binding.recyclerMessages;
-        //Set the Adapter to hold a reference to the list FOR THIS chat ID that the ViewModel
-        //holds.
-
+        binding.recyclerContacts.setAdapter(
+                new ContactsRecyclerViewAdapter(
+                        mContactsSearchViewModel.convertToList(new JSONObject())
+                )
+        );
     }
 
     private void search(@NonNull View view) {
@@ -71,29 +71,16 @@ public class ContactsSearchFragment extends Fragment {
     }
 
     private void observeResponse(final JSONObject response) {
-        if (response.length() > 0) {
-            if (response.has("code")) {
-                try {
-                    final String msg = response.getJSONObject("data").getString("message");
-                    if(msg.equals("Email exists"))
-                        binding.editSearch.setError(
-                                "Error Authenticating: " +
-                                        response.getJSONObject("data").getString("message"));
-                    else if(msg.equals("Username exists")){
-                        binding.editSearch.setError(
-                                "Error Authenticating: " +
-                                        response.getJSONObject("data").getString("message"));
-                    }
-                } catch (JSONException e) {
-                    Log.e("JSON Parse Error", e.getMessage());
-                }
-            } else {
-                Log.d("HERES THE SHIT!!!!!", response.toString());
-            }
+        if (response.length() <= 0) {
+                    binding.editSearch.setError(
+                            "No results: ");
         } else {
-            binding.editSearch.setError("No Users Found");
+            Log.d("HERES THE SHIT!!!!!", response.toString());
+            binding.recyclerContacts.setAdapter(
+                    new ContactsRecyclerViewAdapter(
+                            mContactsSearchViewModel.convertToList(response)
+                    )
+            );
         }
     }
-
-
 }

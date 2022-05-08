@@ -33,8 +33,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!--  Used for loading new messages
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <!--  Used for loading new messages  -->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/swipe_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -49,14 +49,15 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_contacts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
             android:orientation="vertical"
             app:layoutManager="LinearLayoutManager"
-            tools:context="edu.uw.tcss450.uiandnavigationlab.ui.blog.BlogListFragment"
-            tools:listitem="@layout/fragment_chat_message"/>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>  -->
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/fragment_contact_card" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
