@@ -1,10 +1,6 @@
 package edu.uw.tcss450.group6App.ui.contacts.search;
 
 import androidx.annotation.Nullable;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.Serializable;
 
 public class ContactInfo implements Serializable {
@@ -12,11 +8,13 @@ public class ContactInfo implements Serializable {
     private final String mFName;
     private final String mLName;
     private final String mDisplayName;
+    private final String mEmail;
 
-    public ContactInfo(String fName, String lName, String displayName){
+    public ContactInfo(String fName, String lName, String displayName, String Email){
         mFName = fName;
         mLName = lName;
         mDisplayName = displayName;
+        mEmail = Email;
     }
 
     public String getFName() {
@@ -29,6 +27,10 @@ public class ContactInfo implements Serializable {
 
     public String getUsername() {
         return mDisplayName;
+    }
+
+    public String getEmail() {
+        return mEmail;
     }
 
     /**
@@ -44,5 +46,6 @@ public class ContactInfo implements Serializable {
         }
         return result;
     }
+
 
 }

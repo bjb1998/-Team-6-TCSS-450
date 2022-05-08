@@ -19,10 +19,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
+import edu.uw.tcss450.group6App.ui.chat.ChatMessage;
 
 public class ContactsSearchViewModel extends AndroidViewModel {
 
@@ -32,6 +32,7 @@ public class ContactsSearchViewModel extends AndroidViewModel {
      * The value represents the List of (known) messages for that that room.
      */
     private MutableLiveData<JSONObject> mUsers;
+    private String currentEmail;
 
     public ContactsSearchViewModel(@NonNull Application application) {
         super(application);
@@ -39,16 +40,23 @@ public class ContactsSearchViewModel extends AndroidViewModel {
         mUsers.setValue(new JSONObject());
     }
 
+    public void setCurrentEmail(String email){
+        currentEmail = email;
+    }
+
     public void addResponseObserver(@NonNull LifecycleOwner owner,
                                     @NonNull Observer<? super JSONObject> observer) {
         mUsers.observe(owner, observer);
     }
 
-    public void searchUsers(final String name){
+    public void searchUsers(final String name, final String option){
         String url = "https://team-6-tcss-450-web.herokuapp.com/search";
         JSONObject body = new JSONObject();
+        Log.d("NAME", name);
+        Log.d("OPTION", option);
         try {
             body.put("name", name);
+            body.put("option", option);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -73,15 +81,14 @@ public class ContactsSearchViewModel extends AndroidViewModel {
     public List<ContactInfo> convertToList(final JSONObject response) {
         List<ContactInfo> list = new ArrayList<>();
         try {
-            Log.d("HERES THE ROWS!!!!!", response.toString());
-            Log.d("HERES THE OBJ!!!!!", response.getJSONObject("message").getJSONArray("rows").toString());
             JSONArray messages = response.getJSONObject("message").getJSONArray("rows");
             for(int i = 0; i < messages.length(); i++) {
                 JSONObject message = messages.getJSONObject(i);
                 ContactInfo cContact = new ContactInfo(
                         message.getString("firstname"),
                         message.getString("lastname"),
-                        message.getString("username")
+                        message.getString("username"),
+                        message.getString("email")
                 );
                 list.add(cContact);
             }
@@ -94,10 +101,45 @@ public class ContactsSearchViewModel extends AndroidViewModel {
         return new ArrayList<>();
     }
 
+    public void connectContact(String otherEmail){
+        String url = "https://team-6-tcss-450-web.herokuapp.com/contacts";
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("userEmail", currentEmail);
+            body.put("otherEmail", otherEmail);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Request request = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                body,
+                this::handleSuccess,
+                this::handleError);
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext())
+                .add(request);
+
+    }
+
+    public void RemoveContact(String email){
+        String url = "https://team-6-tcss-450-web.herokuapp.com/contacts/remove";
+    }
+
+    private void handleSuccess(final JSONObject response) {
+        Log.v("HOORAY", "WE DID A THING TO THE CONTACT OH YEAH!111111!11!!1!1");
+    }
+
     private void handleError(final VolleyError error) {
         //you should add much better error handling in a production release.
         //i.e. YOUR PROJECT
-        Log.e("CONNECTION ERROR", error.getLocalizedMessage());
-        throw new IllegalStateException(error.getMessage());
+        Log.v("OH CRAP", "THE CONTACT IS ALREADY THERE WHY DID YOU PRESS THAT?!?!?!??!?!?");
     }
 }
