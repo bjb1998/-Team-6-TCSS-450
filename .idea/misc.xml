@@ -24,8 +24,10 @@
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat.xml" value="0.3140625" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat_message.xml" value="0.33" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contact_card.xml" value="0.5" />
-        <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contact_search.xml" value="1.1" />
-        <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contacts.xml" value="0.2" />
+        <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contact_pending.xml" value="0.67" />
+        <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contact_search.xml" value="0.3496021220159151" />
+        <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contact_verified.xml" value="0.67" />
+        <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contacts.xml" value="0.33" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_home.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_incrementor.xml" value="0.31354166666666666" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_register.xml" value="0.25" />

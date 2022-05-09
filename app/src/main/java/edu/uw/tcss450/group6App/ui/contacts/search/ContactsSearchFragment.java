@@ -81,7 +81,6 @@ public class ContactsSearchFragment extends Fragment {
                     binding.editSearch.setError(
                             "No results: ");
         } else {
-            Log.d("HERES THE SHIT!!!!!", response.toString());
             binding.recyclerContacts.setAdapter(
                     new ContactsRecyclerViewAdapter(
                             mContactsSearchViewModel.convertToList(response)

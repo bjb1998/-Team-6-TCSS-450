@@ -33,10 +33,11 @@ import edu.uw.tcss450.group6App.ui.auth.signin.SignInFragmentDirections;
 class ContactsRecyclerViewAdapter extends RecyclerView.Adapter<ContactsRecyclerViewAdapter.ContactViewHolder> {
 
     private final List<ContactInfo> mUsers;
+    private ContactsSearchViewModel viewModel;
+
     public ContactsRecyclerViewAdapter(List<ContactInfo> users) {
         this.mUsers = users;
     }
-    private ContactsSearchViewModel viewModel;
 
     @NonNull
     @Override

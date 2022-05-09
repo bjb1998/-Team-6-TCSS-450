@@ -129,12 +129,8 @@ public class ContactsSearchViewModel extends AndroidViewModel {
 
     }
 
-    public void RemoveContact(String email){
-        String url = "https://team-6-tcss-450-web.herokuapp.com/contacts/remove";
-    }
-
     private void handleSuccess(final JSONObject response) {
-        Log.v("HOORAY", "WE DID A THING TO THE CONTACT OH YEAH!111111!11!!1!1");
+        Log.d("MESSAGE", response.toString());
     }
 
     private void handleError(final VolleyError error) {
