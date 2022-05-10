@@ -41,8 +41,17 @@
     <fragment
         android:id="@+id/navigation_contacts_search"
         android:name="edu.uw.tcss450.group6App.ui.contacts.search.ContactsSearchFragment"
-        android:label="contacts_search_fragment"
+        android:label="@string/title_contact_search"
         tools:layout="@layout/fragment_contact_search" />
+    <fragment
+        android:id="@+id/navigation_chat_menu"
+        android:name="edu.uw.tcss450.group6App.ui.chat.chatMenu.ChatMenuFragment"
+        android:label="@string/title_chat_menu"
+        tools:layout="@layout/fragment_chat_menu">
+        <action
+            android:id="@+id/action_navigation_chat_menu_to_navigation_chat"
+            app:destination="@id/navigation_chat" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_settings_themes"
