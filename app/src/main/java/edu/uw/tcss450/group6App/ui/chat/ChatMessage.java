@@ -42,22 +42,18 @@ public final class ChatMessage implements Serializable {
     }
 
     public String getMessage() {
-        Log.d("MESSAGE", mMessage);
         return mMessage;
     }
 
     public String getSender() {
-        Log.d("SENDER", mSender);
         return mSender;
     }
 
     public String getTimeStamp() {
-        Log.d("TIMESTMAP", mTimeStamp);
         return mTimeStamp;
     }
 
     public int getMessageId() {
-        Log.d("MESSAGE_ID", "" + mMessageId);
         return mMessageId;
     }
 
