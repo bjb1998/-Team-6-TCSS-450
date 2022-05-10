@@ -52,8 +52,6 @@ public class ContactsSearchViewModel extends AndroidViewModel {
     public void searchUsers(final String name, final String option){
         String url = "https://team-6-tcss-450-web.herokuapp.com/search";
         JSONObject body = new JSONObject();
-        Log.d("NAME", name);
-        Log.d("OPTION", option);
         try {
             body.put("name", name);
             body.put("option", option);

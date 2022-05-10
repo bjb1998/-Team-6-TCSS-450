@@ -88,7 +88,6 @@ public class ContactsFragment extends Fragment {
 
             try {
                 int context = response.getInt("context");
-                Log.d("Context", "" + context);
                 if(context == 1)
                     binding.recyclerContactsVerified.setAdapter(
                             new ContactsVerifiedRecyclerViewAdapter(

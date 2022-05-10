@@ -15,6 +15,9 @@
     <string name="action_next">Next</string>
     <string name="action_settings">Settings</string>
     <string name="action_link">Full Post</string>
+    <string name="hint_contact_pending">Pending Contacts</string>
+    <string name="hint_contact_verified">Verified Contacts</string>
+    <string name="hint_new_contact">Find New Contact</string>
     <string name="spin">Spin me</string>
 
     <string name="title_home">Home</string>

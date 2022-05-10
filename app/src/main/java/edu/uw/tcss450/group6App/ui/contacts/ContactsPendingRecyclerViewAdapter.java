@@ -70,6 +70,12 @@ class ContactsPendingRecyclerViewAdapter extends RecyclerView.Adapter<ContactsPe
             mContact = contact;
             binding.textUsername.setText(contact.getUsername());
             binding.textName.setText(contact.getFName() + " " + contact.getLName());
+            binding.buttonAccept.setOnClickListener(button ->
+                    viewModel.acceptContact(mContact.getEmail())
+            );
+            binding.buttonDecline.setOnClickListener(button ->
+                    viewModel.removeContact(mContact.getEmail())
+            );
         }
     }
 }

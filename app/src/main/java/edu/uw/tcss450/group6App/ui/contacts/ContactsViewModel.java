@@ -51,7 +51,6 @@ public class ContactsViewModel extends AndroidViewModel {
 
     public List<ContactInfo> convertToList(final JSONObject response) {
         List<ContactInfo> list = new ArrayList<>();
-        Log.d("RESPONSE", response.toString());
         try {
             JSONArray messages = response.getJSONObject("message").getJSONArray("rows");
             for(int i = 0; i < messages.length(); i++) {
@@ -84,8 +83,6 @@ public class ContactsViewModel extends AndroidViewModel {
             e.printStackTrace();
         }
 
-        Log.d("BODY", body.toString());
-
         Request request = new JsonObjectRequest(
                 Request.Method.POST,
                 url,
@@ -104,7 +101,7 @@ public class ContactsViewModel extends AndroidViewModel {
     }
 
     public void acceptContact(String otherEmail){
-        String url = "https://team-6-tcss-450-web.herokuapp.com/contacts";
+        String url = "https://team-6-tcss-450-web.herokuapp.com/contacts/accept";
 
         JSONObject body = new JSONObject();
         try {
@@ -131,8 +128,33 @@ public class ContactsViewModel extends AndroidViewModel {
 
     }
 
-    public void RemoveContact(String email){
+    public void removeContact(String otherEmail){
         String url = "https://team-6-tcss-450-web.herokuapp.com/contacts/remove";
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("userEmail", currentEmail);
+            body.put("otherEmail", otherEmail);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Request request = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                body,
+                this::handleSuccess,
+                this::handleError);
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext())
+                .add(request);
+
+
     }
 
     private void handleSuccess(final JSONObject response) {
