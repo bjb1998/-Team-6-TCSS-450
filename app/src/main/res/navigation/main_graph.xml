@@ -6,11 +6,19 @@
     app:startDestination="@id/navigation_home">
 
     <fragment
+
+        android:id="@+id/navigation_settings"
+    android:name="edu.uw.tcss450.group6App.ui.settings.SettingsFragment"
+    android:label="@string/action_settings"
+    tools:layout="@layout/fragment_settings" />
+    <action
+        android:id="@+id/action_navigation_settings_to_theme"
+        app:destination="@id/navigation_settings_themes" />
+    <fragment
         android:id="@+id/navigation_home"
         android:name="edu.uw.tcss450.group6App.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home">
-    </fragment>
+        tools:layout="@layout/fragment_home"/>
     <fragment
         android:id="@+id/navigation_contacts"
         android:name="edu.uw.tcss450.group6App.ui.contacts.ContactsFragment"
@@ -35,5 +43,17 @@
         android:name="edu.uw.tcss450.group6App.ui.contacts.search.ContactsSearchFragment"
         android:label="contacts_search_fragment"
         tools:layout="@layout/fragment_contact_search" />
+
+    <fragment
+        android:id="@+id/navigation_settings_themes"
+        android:name="edu.uw.tcss450.group6App.ui.settings.ThemeFragment"
+        android:label="fragment_theme"
+        tools:layout="@layout/fragment_themes" />
+
+    <fragment
+        android:id="@+id/navigation_settings_themes"
+        android:name="edu.uw.tcss450.group6App.ui.settings.ThemeFragment"
+        android:label="fragment_theme"
+        tools:layout="@layout/fragment_themes" />
 
 </navigation>
