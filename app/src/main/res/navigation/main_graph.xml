@@ -50,4 +50,10 @@
         android:label="fragment_theme"
         tools:layout="@layout/fragment_themes" />
 
+    <fragment
+        android:id="@+id/navigation_settings_themes"
+        android:name="edu.uw.tcss450.group6App.ui.settings.ThemeFragment"
+        android:label="fragment_theme"
+        tools:layout="@layout/fragment_themes" />
+
 </navigation>
