@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_team_6_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="edu.uw.tcss450.group6App.MainActivity"></activity>
-        <activity android:name="edu.uw.tcss450.group6App.AuthActivity"
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

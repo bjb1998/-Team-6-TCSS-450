@@ -5,4 +5,16 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorOffWhite">#E9E9E9</color>
     <color name="colorPrimaryAlpha">#226200EE</color>
+    <color name="gray">#d0d7e0</color>
+    <color name="royalBlue">#4169e1</color>
+    <color name="red">#d60000</color>
+    <color name="red_dark">#9c0000</color>
+    <color name="red_light">#ff5131</color>
+    <color name="black">#000000</color>
+    <color name="purple_200">#0F9D58</color>
+    <color name="purple_500">#0F9D58</color>
+    <color name="purple_700">#0F9D58</color>
+    <color name="teal_200">#0F9D58</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
 </resources>
