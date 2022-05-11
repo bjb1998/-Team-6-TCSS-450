@@ -1,5 +1,7 @@
 package edu.uw.tcss450.group6App.ui.chat.chatMenu;
 
+import static edu.uw.tcss450.group6App.MainActivity.currentUserInfo;
+
 import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,8 +19,6 @@ import java.util.List;
 import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentChatCardBinding;
 import edu.uw.tcss450.group6App.model.UserInfoViewModel;
-import edu.uw.tcss450.group6App.ui.contacts.ContactsFragmentDirections;
-import edu.uw.tcss450.group6App.ui.contacts.ContactsViewModel;
 
 public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuRecyclerViewAdapater.ChatViewHolder> {
 
@@ -41,7 +41,7 @@ public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuR
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         if(viewModel==null){
-            viewModel=new ViewModelProvider((ViewModelStoreOwner) recyclerView.getContext()).get(UserInfoViewModel.class);
+            viewModel= currentUserInfo;
         }
     }
 
