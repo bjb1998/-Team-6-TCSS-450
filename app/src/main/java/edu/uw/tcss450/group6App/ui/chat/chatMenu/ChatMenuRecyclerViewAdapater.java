@@ -9,18 +9,21 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentChatCardBinding;
+import edu.uw.tcss450.group6App.model.UserInfoViewModel;
+import edu.uw.tcss450.group6App.ui.contacts.ContactsFragmentDirections;
 import edu.uw.tcss450.group6App.ui.contacts.ContactsViewModel;
 
 public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuRecyclerViewAdapater.ChatViewHolder> {
 
     private final List<ChatInfo> mChats;
-    private ContactsViewModel viewModel;
+    private UserInfoViewModel viewModel;
 
     public ChatMenuRecyclerViewAdapater(List<ChatInfo> chats) {
         this.mChats = chats;
@@ -38,13 +41,18 @@ public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuR
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         if(viewModel==null){
-            viewModel=new ViewModelProvider((ViewModelStoreOwner) recyclerView.getContext()).get(ContactsViewModel.class);
+            viewModel=new ViewModelProvider((ViewModelStoreOwner) recyclerView.getContext()).get(UserInfoViewModel.class);
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull ChatMenuRecyclerViewAdapater.ChatViewHolder holder, int position) {
         holder.setChat(mChats.get(position));
+        holder.binding.buttonEnterChat.setOnClickListener(button -> {
+            viewModel.setCurrentChatId(holder.mChat.getChatId());
+            Navigation.findNavController(holder.mView).navigate(
+                    ChatMenuFragmentDirections.actionNavigationChatMenuToNavigationChat());
+        });
     }
 
     @Override
@@ -56,9 +64,9 @@ public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuR
         private final View mView;
         private FragmentChatCardBinding binding;
         private ChatInfo mChat;
-        private ContactsViewModel viewModel;
+        private UserInfoViewModel viewModel;
 
-        public ChatViewHolder(@NonNull View view, ContactsViewModel model) {
+        public ChatViewHolder(@NonNull View view, UserInfoViewModel model) {
             super(view);
             mView = view;
             binding = FragmentChatCardBinding.bind(view);
@@ -68,11 +76,7 @@ public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuR
         @SuppressLint("SetTextI18n")
         void setChat(final ChatInfo chat) {
             mChat = chat;
-            binding.textChatName.setText(chat.getName());
-            binding.buttonEnterChat.setOnClickListener(button ->
-                    Log.d("OPEN CHAT", "Opening chat...")
-                    //viewModel.removeContact(mContact.getEmail())
-            );
+            binding.textChatName.setText(mChat.getName());
         }
     }
 }

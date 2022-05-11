@@ -54,7 +54,6 @@ public class ChatMenuViewModel extends AndroidViewModel {
                         message.getString("name"),
                         message.getInt("chatid")
                 );
-                Log.d("THE CHAT --->", cChat.getName() + ", " + cChat.getChatId());
                 list.add(cChat);
             }
             //inform observers of the change (setValue)
