@@ -15,9 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
-
-import edu.uw.tcss450.group6App.MainActivity;
 import edu.uw.tcss450.group6App.R;
 
 /**
