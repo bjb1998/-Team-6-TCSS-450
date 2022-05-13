@@ -13,6 +13,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,6 +26,7 @@ import edu.uw.tcss450.group6App.databinding.ActivityMainBinding;
 import edu.uw.tcss450.group6App.model.NewMessageCountViewModel;
 import edu.uw.tcss450.group6App.model.UserInfoViewModel;
 import edu.uw.tcss450.group6App.services.PushReceiver;
+import edu.uw.tcss450.group6App.ui.settings.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,6 +88,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+
+            getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.container, new SettingsFragment()).commit();
+            //mAppBarConfiguration
+            Log.d("SETTINGS", "Clicked");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         if (mPushMessageReceiver == null) {
@@ -99,13 +130,6 @@ public class MainActivity extends AppCompatActivity {
         if (mPushMessageReceiver != null){
             unregisterReceiver(mPushMessageReceiver);
         }
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
     }
 
     /**
