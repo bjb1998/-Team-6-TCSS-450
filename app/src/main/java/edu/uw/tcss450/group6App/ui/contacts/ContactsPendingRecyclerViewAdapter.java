@@ -45,6 +45,12 @@ class ContactsPendingRecyclerViewAdapter extends RecyclerView.Adapter<ContactsPe
     @Override
     public void onBindViewHolder(@NonNull ContactsPendingRecyclerViewAdapter.ContactViewHolder holder, int position) {
         holder.setContact(mUsers.get(position));
+        holder.binding.buttonAccept.setOnClickListener(button ->
+                holder.viewModel.acceptContact(holder.mContact.getEmail())
+        );
+        holder.binding.buttonDecline.setOnClickListener(button ->
+                holder.viewModel.removeContact(holder.mContact.getEmail())
+        );
     }
 
     @Override
@@ -70,12 +76,14 @@ class ContactsPendingRecyclerViewAdapter extends RecyclerView.Adapter<ContactsPe
             mContact = contact;
             binding.textUsername.setText(contact.getUsername());
             binding.textName.setText(contact.getFName() + " " + contact.getLName());
-            binding.buttonAccept.setOnClickListener(button ->
-                    viewModel.acceptContact(mContact.getEmail())
-            );
-            binding.buttonDecline.setOnClickListener(button ->
-                    viewModel.removeContact(mContact.getEmail())
-            );
+            //If the user sent the request, hide the buttons
+            if(mContact.isDidSend()){
+                binding.buttonDecline.setVisibility(View.GONE);
+                binding.buttonAccept.setVisibility(View.GONE);
+            }else{ //otherwise, hide the text
+                binding.textPending.setVisibility(View.GONE);
+            }
+
         }
     }
 }
