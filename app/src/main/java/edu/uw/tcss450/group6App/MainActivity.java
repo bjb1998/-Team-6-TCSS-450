@@ -8,8 +8,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -132,6 +134,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    //Alert dialog
+    public void onBackPressed() {
+        AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("EXIT")
+                .setMessage("Are you sure?")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MainActivity.super.onBackPressed();
+                    }
+                }).setNegativeButton("Cancel", null);
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+
     /**
      * A BroadcastReceiver that listens for messages sent from PushReceiver
      */
@@ -164,5 +184,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
-
