@@ -26,13 +26,9 @@ import edu.uw.tcss450.group6App.ui.contacts.search.ContactInfo;
 
 public class ContactsViewModel extends AndroidViewModel {
 
-    /**
-     * A Map of Lists of Chat Messages.
-     * The Key represents the Chat ID
-     * The value represents the List of (known) messages for that that room.
-     */
     private MutableLiveData<JSONObject> mUsers;
     private String currentEmail;
+    private int currentContactSenderStatus;
 
     public ContactsViewModel(@NonNull Application application) {
         super(application);
@@ -61,6 +57,7 @@ public class ContactsViewModel extends AndroidViewModel {
                         message.getString("username"),
                         message.getString("email")
                 );
+                cContact.setDidSend(message.getBoolean("didsend"));
                 list.add(cContact);
             }
             //inform observers of the change (setValue)
@@ -128,6 +125,8 @@ public class ContactsViewModel extends AndroidViewModel {
 
     }
 
+
+
     public void removeContact(String otherEmail){
         String url = "https://team-6-tcss-450-web.herokuapp.com/contacts/remove";
 
@@ -157,6 +156,33 @@ public class ContactsViewModel extends AndroidViewModel {
 
     }
 
+    public void createChat(String otherEmail){
+        String url = "https://team-6-tcss-450-web.herokuapp.com/chat/create";
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("userEmail", currentEmail);
+            body.put("otherEmail", otherEmail);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Request request = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                body,
+                this::handleSuccess,
+                this::handleError);
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext())
+                .add(request);
+    }
+
     private void handleSuccess(final JSONObject response) {
         Log.d("MESSAGE", response.toString());
     }
@@ -165,5 +191,9 @@ public class ContactsViewModel extends AndroidViewModel {
         //you should add much better error handling in a production release.
         //i.e. YOUR PROJECT
         Log.v("OH CRAP", "No Contacts Here");
+    }
+
+    public int getCurrentContactSenderStatus() {
+        return currentContactSenderStatus;
     }
 }

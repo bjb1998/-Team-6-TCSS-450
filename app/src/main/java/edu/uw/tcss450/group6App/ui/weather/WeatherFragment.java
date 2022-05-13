@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import edu.uw.tcss450.group6App.R;
 
 /**
+ * Contains all weather related functionality.
+ * @author Robert Beltran
  * A simple {@link Fragment} subclass.
  * Use the {@link WeatherFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -26,9 +28,10 @@ public class WeatherFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public WeatherFragment() {
-        // Required empty public constructor
-    }
+    /**
+     * Stub empty constructor
+     */
+    public WeatherFragment() {}
 
     /**
      * Use this factory method to create a new instance of
@@ -38,7 +41,6 @@ public class WeatherFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment Weather.
      */
-    // TODO: Rename and change types and number of parameters
     public static WeatherFragment newInstance(String param1, String param2) {
         WeatherFragment fragment = new WeatherFragment();
         Bundle args = new Bundle();

@@ -70,6 +70,9 @@ class ContactsVerifiedRecyclerViewAdapter extends RecyclerView.Adapter<ContactsV
             mContact = contact;
             binding.textUsername.setText(contact.getUsername());
             binding.textName.setText(contact.getFName() + " " + contact.getLName());
+            binding.buttonChat.setOnClickListener(button ->
+                    viewModel.createChat(mContact.getEmail())
+            );
         }
     }
 }

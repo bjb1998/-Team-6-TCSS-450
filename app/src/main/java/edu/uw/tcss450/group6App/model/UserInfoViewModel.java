@@ -11,10 +11,12 @@ public class UserInfoViewModel extends ViewModel {
 
     private final String mEmail;
     private final String mJwt;
+    private static int currentChatId;
 
     private UserInfoViewModel(String email, String jwt) {
         mEmail = email;
         mJwt = jwt;
+        currentChatId = 0;
     }
 
     public String getEmail() {
@@ -23,6 +25,14 @@ public class UserInfoViewModel extends ViewModel {
 
     public String getJwt() {
         return mJwt;
+    }
+
+    public int getCurrentChatId() {
+        return currentChatId;
+    }
+
+    public void setCurrentChatId(int n) {
+        currentChatId = n;
     }
 
     public static class UserInfoViewModelFactory implements ViewModelProvider.Factory {

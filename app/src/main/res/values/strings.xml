@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Group 6 Chat App</string>
+    <string name="app_name">PointlessChat</string>
 
     <string name="hint_first">First Name</string>
     <string name="hint_last">Last Name</string>
@@ -16,6 +16,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_link">Full Post</string>
     <string name="hint_contact_pending">Pending Contacts</string>
+    <string name="hint_contact_pending_sender">Request Sent</string>
     <string name="hint_contact_verified">Verified Contacts</string>
     <string name="hint_new_contact">Find New Contact</string>
     <string name="spin">Spin me</string>
@@ -24,10 +25,30 @@
     <string name="title_chat">Chat</string>
     <string name="title_weather">Weather</string>
     <string name="title_contacts">Contacts</string>
+    <string name="title_contact_search">Contact Search</string>
+    <string name="title_chat_menu">Chat Menu</string>
 
     <string name="base_url_service">https://team-6-tcss-450-web.herokuapp.com/</string>
     <string name="base_url_auth">https://bjb1998-tcss450-labs-auth.herokuapp.com/</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Weather</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_settings">activity_settings</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="_10_days">10 Days</string>
+    <string name="today">Today</string>
 </resources>

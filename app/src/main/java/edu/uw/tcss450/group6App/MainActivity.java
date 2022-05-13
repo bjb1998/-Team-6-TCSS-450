@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     //Alert dialog
     public void onBackPressed() {
         AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
 
     /**
      * A BroadcastReceiver that listens for messages sent from PushReceiver
