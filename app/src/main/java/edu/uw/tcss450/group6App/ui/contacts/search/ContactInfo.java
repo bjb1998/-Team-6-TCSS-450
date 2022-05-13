@@ -9,6 +9,7 @@ public class ContactInfo implements Serializable {
     private final String mLName;
     private final String mDisplayName;
     private final String mEmail;
+    private boolean didSend;
 
     public ContactInfo(String fName, String lName, String displayName, String Email){
         mFName = fName;
@@ -16,6 +17,10 @@ public class ContactInfo implements Serializable {
         mDisplayName = displayName;
         mEmail = Email;
     }
+
+    public void setDidSend(boolean b){didSend = b;}
+
+    public boolean isDidSend(){return didSend;}
 
     public String getFName() {
         return mFName;

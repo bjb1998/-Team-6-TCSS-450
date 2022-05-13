@@ -1,34 +1,19 @@
 package edu.uw.tcss450.group6App.ui.contacts.search;
 
 import android.annotation.SuppressLint;
-import android.content.res.Resources;
-import android.text.Html;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
-import androidx.core.graphics.ColorUtils;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.shape.CornerFamily;
 
 import java.util.List;
 
 import edu.uw.tcss450.group6App.R;
-import edu.uw.tcss450.group6App.databinding.FragmentChatMessageBinding;
 import edu.uw.tcss450.group6App.databinding.FragmentContactCardBinding;
-import edu.uw.tcss450.group6App.databinding.FragmentContactSearchBinding;
-import edu.uw.tcss450.group6App.model.UserInfoViewModel;
-import edu.uw.tcss450.group6App.ui.auth.signin.SignInFragmentDirections;
 
 class ContactsRecyclerViewAdapter extends RecyclerView.Adapter<ContactsRecyclerViewAdapter.ContactViewHolder> {
 

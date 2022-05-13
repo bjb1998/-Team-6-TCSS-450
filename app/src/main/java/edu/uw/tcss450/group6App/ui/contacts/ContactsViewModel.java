@@ -28,6 +28,7 @@ public class ContactsViewModel extends AndroidViewModel {
 
     private MutableLiveData<JSONObject> mUsers;
     private String currentEmail;
+    private int currentContactSenderStatus;
 
     public ContactsViewModel(@NonNull Application application) {
         super(application);
@@ -56,6 +57,7 @@ public class ContactsViewModel extends AndroidViewModel {
                         message.getString("username"),
                         message.getString("email")
                 );
+                cContact.setDidSend(message.getBoolean("didsend"));
                 list.add(cContact);
             }
             //inform observers of the change (setValue)
@@ -123,6 +125,8 @@ public class ContactsViewModel extends AndroidViewModel {
 
     }
 
+
+
     public void removeContact(String otherEmail){
         String url = "https://team-6-tcss-450-web.herokuapp.com/contacts/remove";
 
@@ -187,5 +191,9 @@ public class ContactsViewModel extends AndroidViewModel {
         //you should add much better error handling in a production release.
         //i.e. YOUR PROJECT
         Log.v("OH CRAP", "No Contacts Here");
+    }
+
+    public int getCurrentContactSenderStatus() {
+        return currentContactSenderStatus;
     }
 }
