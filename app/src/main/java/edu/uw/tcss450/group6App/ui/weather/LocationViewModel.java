@@ -9,6 +9,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
+/**
+ * Model for the users locations used for the weather service or other location services.
+ * @author Robert Beltran
+ */
 public class LocationViewModel extends ViewModel {
 
     private MutableLiveData<Location> mLocation;

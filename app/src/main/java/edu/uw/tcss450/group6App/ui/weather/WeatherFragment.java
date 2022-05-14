@@ -11,10 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.uw.tcss450.group6App.R;
-import edu.uw.tcss450.group6App.databinding.FragmentContactSearchBinding;
 import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
-import edu.uw.tcss450.group6App.ui.contacts.ContactsViewModel;
 
 /**
  * Contains all weather related functionality.
@@ -30,7 +27,8 @@ public class WeatherFragment extends Fragment {
     private static final String apiKey = "d76b1605bb534d7ea82ace219ff60b96";
 
 
-    private WeatherViewModel mViewModel;
+    private WeatherViewModel mWeatherModel;
+    private LocationViewModel mLocationModel;
 
     private FragmentWeatherBinding binding;
 
@@ -72,7 +70,7 @@ public class WeatherFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        mViewModel = new ViewModelProvider(getActivity())
+        mWeatherModel = new ViewModelProvider(getActivity())
                 .get(WeatherViewModel.class);
     }
 
@@ -88,9 +86,9 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mViewModel.addResponseObserver(getViewLifecycleOwner(), result ->
+        mWeatherModel.addResponseObserver(getViewLifecycleOwner(), result ->
                 binding.textResponseOutput.setText(result.toString()));
-        binding.todayButton.setOnClickListener(button -> mViewModel.connectGet());
+        binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGet());
     }
 
 
