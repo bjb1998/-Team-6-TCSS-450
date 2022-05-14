@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,6 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import edu.uw.tcss450.group6App.R;
-import edu.uw.tcss450.group6App.databinding.FragmentSettingsBinding;
 import edu.uw.tcss450.group6App.databinding.FragmentThemesBinding;
 import edu.uw.tcss450.group6App.model.UserInfoViewModel;
 
@@ -56,29 +56,30 @@ public class ThemeFragment extends Fragment {
 //         button_red_theme = (Button) v.findViewById(R.id.idRBLight);
 
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    // on radio button check change
-                    switch (checkedId) {
-                        case R.id.button_theme_light:
-                            // on below line we are checking the radio button with id.
-                            // on below line we are setting the text to text view as light mode.
-                            themeTV.setText("Light Theme");
-                            // on below line we are changing the theme to light mode.
-                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                            break;
-                        case R.id.button_theme_dark:
-                            // this method is called when dark radio button is selected
-                            // on below line we are setting dark theme text to our text view.
-                            themeTV.setText("Dark Theme");
-                            // on below line we are changing the theme to dark mode.
-                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                            break;
-                    }
-
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+                Log.d("THEME", checkedId + "");
+                // on radio button check change
+                switch (checkedId) {
+                    case R.id.button_theme_light:
+                        // on below line we are checking the radio button with id.
+                        // on below line we are setting the text to text view as light mode.
+                        themeTV.setText("Light Theme");
+                        // on below line we are changing the theme to light mode.
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        group.clearCheck();
+                        Log.d("THEME", "Hello Light!");
+                        break;
+                    case R.id.button_theme_dark:
+                        // this method is called when dark radio button is selected
+                        // on below line we are setting dark theme text to our text view.
+                        themeTV.setText("Dark Theme");
+                        // on below line we are changing the theme to dark mode.
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        group.clearCheck();
+                        Log.d("THEME", "Hello Dark!");
+                        break;
                 }
+
             });
         return binding.getRoot();
             }
