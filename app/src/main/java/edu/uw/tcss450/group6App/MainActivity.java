@@ -101,13 +101,16 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_settings) {
 
-            getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.container, new SettingsFragment()).commit();
-            //mAppBarConfiguration
-            Log.d("SETTINGS", "Clicked");
+            openSettings();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+    public void openSettings() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController.navigate(R.id.navigation_settings);
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {

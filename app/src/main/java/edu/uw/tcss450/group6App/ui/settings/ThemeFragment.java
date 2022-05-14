@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +19,9 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import edu.uw.tcss450.group6App.R;
+import edu.uw.tcss450.group6App.databinding.FragmentSettingsBinding;
+import edu.uw.tcss450.group6App.databinding.FragmentThemesBinding;
+import edu.uw.tcss450.group6App.model.UserInfoViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,18 +29,30 @@ import edu.uw.tcss450.group6App.R;
  */
 public class ThemeFragment extends Fragment {
 
+    private FragmentThemesBinding binding;
+    private UserInfoViewModel viewModel;
     Button button_red_theme, button_dark_theme;
     private RadioGroup radioGroup;
     private TextView themeTV;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
 
-        View v=  inflater.inflate(R.layout.fragment_themes, container, false);
+        binding = FragmentThemesBinding.inflate(inflater);
+        ViewModelProvider provider = new ViewModelProvider(getActivity());
+        viewModel = provider.get(UserInfoViewModel.class);
 
-        radioGroup = v.findViewById(R.id.idRGgroup);
-        themeTV = v.findViewById(R.id.idtvTheme);
+        radioGroup = binding.getRoot().findViewById(R.id.idRGgroup);
+        themeTV = binding.getRoot().findViewById(R.id.idtvTheme);
 //         button_red_theme = (Button) v.findViewById(R.id.idRBLight);
 
 
@@ -44,14 +62,14 @@ public class ThemeFragment extends Fragment {
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     // on radio button check change
                     switch (checkedId) {
-                        case R.id.idRBLight:
+                        case R.id.button_theme_light:
                             // on below line we are checking the radio button with id.
                             // on below line we are setting the text to text view as light mode.
                             themeTV.setText("Light Theme");
                             // on below line we are changing the theme to light mode.
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                             break;
-                        case R.id.idRBDark:
+                        case R.id.button_theme_dark:
                             // this method is called when dark radio button is selected
                             // on below line we are setting dark theme text to our text view.
                             themeTV.setText("Dark Theme");
@@ -62,7 +80,7 @@ public class ThemeFragment extends Fragment {
 
                 }
             });
-        return v;
+        return binding.getRoot();
             }
 
 
