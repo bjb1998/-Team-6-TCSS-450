@@ -1,9 +1,11 @@
+
 package edu.uw.tcss450.group6App.ui.settings;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
@@ -27,27 +29,34 @@ import edu.uw.tcss450.group6App.model.UserInfoViewModel;
  */
 public class SettingsFragment extends Fragment {
 
+    private FragmentSettingsBinding binding;
+    private UserInfoViewModel viewModel;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        TextView textView = new TextView(getActivity());
-        View v = inflater.inflate(R.layout.fragment_settings, container, false);
-
-        Button button_theme = (Button) v.findViewById(R.id.button_theme);
-        button_theme.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                ThemeFragment themeFragment = new ThemeFragment();
-                FragmentManager manager = getFragmentManager();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, themeFragment, "theme").addToBackStack(null).commit();
-//                manager.beginTransaction().replace(R.id.container, ).commit();
-            }
-        });
-    return v;
-
+        binding = FragmentSettingsBinding.inflate(inflater);
+        ViewModelProvider provider = new ViewModelProvider(getActivity());
+        viewModel = provider.get(UserInfoViewModel.class);
+        return binding.getRoot();
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+        binding.buttonSettingsThemes.setOnClickListener(button ->
+                Navigation.findNavController(getView()).navigate(
+                        SettingsFragmentDirections.actionNavigationSettingsToTheme()
+                ));
+
+
+
+    }
 }

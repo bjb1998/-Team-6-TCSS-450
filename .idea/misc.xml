@@ -11,14 +11,21 @@
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/activity_auth.xml" value="0.13333333333333333" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat.xml" value="0.2" />
-        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contacts.xml" value="0.1403985507246377" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat_card.xml" value="0.371875" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat_menu.xml" value="0.371875" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat_message.xml" value="0.371875" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contact_card.xml" value="0.38697916666666665" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contact_pending.xml" value="0.371875" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contact_search.xml" value="0.371875" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contact_verified.xml" value="0.371875" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contacts.xml" value="0.1" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_home.xml" value="0.1403985507246377" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_navigation_settings.xml" value="0.13496376811594202" />
-        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_register.xml" value="0.1403985507246377" />
-        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_settings.xml" value="0.1" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_register.xml" value="0.16666666666666666" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_settings.xml" value="0.3333333333333333" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_sign_in.xml" value="0.1403985507246377" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_theme.xml" value="0.17255434782608695" />
-        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_themes.xml" value="0.1" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_themes.xml" value="0.33" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_weather.xml" value="0.1403985507246377" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/settings_activity.xml" value="0.1" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
