@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
@@ -60,6 +61,14 @@ public class RegisterViewModel extends AndroidViewModel {
         }
     }
 
+    /**
+     * Connect to the web service and make the account
+     * @param first user first name
+     * @param last user last name
+     * @param username the users username
+     * @param email the users email
+     * @param password the users password
+     */
     public void connect(final String first,
                         final String last,
                         final String username,

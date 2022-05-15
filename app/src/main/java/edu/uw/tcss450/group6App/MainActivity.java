@@ -1,6 +1,7 @@
 package edu.uw.tcss450.group6App;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -22,6 +23,7 @@ import android.view.MenuItem;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import edu.uw.tcss450.group6App.ui.chat.ChatFragment;
 import edu.uw.tcss450.group6App.ui.chat.ChatMessage;
 import edu.uw.tcss450.group6App.ui.chat.ChatViewModel;
 import edu.uw.tcss450.group6App.databinding.ActivityMainBinding;
@@ -30,6 +32,10 @@ import edu.uw.tcss450.group6App.model.UserInfoViewModel;
 import edu.uw.tcss450.group6App.services.PushReceiver;
 import edu.uw.tcss450.group6App.ui.settings.SettingsFragment;
 
+/**
+ * the main activity of the app.
+ * Most fragments wil,l be loading this first
+ */
 public class MainActivity extends AppCompatActivity {
 
 
@@ -106,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * A Open the setting fragment when the settings button is clicked
+     */
     public void openSettings() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         navController.navigate(R.id.navigation_settings);
@@ -138,7 +148,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //Alert dialog
+    /**
+     * Alert the user with an 'are you sure' style popup when they want to exit the app.
+     */
     public void onBackPressed() {
         AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("EXIT")

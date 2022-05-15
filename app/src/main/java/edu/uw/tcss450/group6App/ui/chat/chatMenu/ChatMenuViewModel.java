@@ -44,6 +44,10 @@ public class ChatMenuViewModel extends AndroidViewModel {
         mChats.observe(owner, observer);
     }
 
+    /**
+     * Convert the returned JSON to a list of ChatInfo Objects to be read on the app
+     * @param response the JSON object
+     */
     public List<ChatInfo> convertToList(final JSONObject response) {
         List<ChatInfo> list = new ArrayList<>();
         try {
@@ -65,6 +69,9 @@ public class ChatMenuViewModel extends AndroidViewModel {
         return new ArrayList<>();
     }
 
+    /**
+     * get the chats of the user from the web service
+     */
     public void getChat(){
         String url = "https://team-6-tcss-450-web.herokuapp.com/chat/get";
 

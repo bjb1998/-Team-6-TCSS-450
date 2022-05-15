@@ -3,13 +3,16 @@ package edu.uw.tcss450.group6App.ui.contacts.search;
 import androidx.annotation.Nullable;
 import java.io.Serializable;
 
+/**
+ * Encapsulate contact information details.
+ */
 public class ContactInfo implements Serializable {
 
     private final String mFName;
     private final String mLName;
     private final String mDisplayName;
     private final String mEmail;
-    private boolean didSend;
+    private boolean didSend; //boolean that shows if the user sent the invite or not
 
     public ContactInfo(String fName, String lName, String displayName, String Email){
         mFName = fName;

@@ -25,7 +25,6 @@ import edu.uw.tcss450.group6App.model.UserInfoViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
-
  */
 public class SettingsFragment extends Fragment {
 
