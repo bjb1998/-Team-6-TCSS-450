@@ -28,7 +28,6 @@ public class ContactsViewModel extends AndroidViewModel {
 
     private MutableLiveData<JSONObject> mUsers;
     private String currentEmail;
-    private int currentContactSenderStatus;
 
     public ContactsViewModel(@NonNull Application application) {
         super(application);
@@ -45,6 +44,10 @@ public class ContactsViewModel extends AndroidViewModel {
         mUsers.observe(owner, observer);
     }
 
+    /**
+     * Convert the returned JSON to a list of ChatInfo Objects to be read on the app
+     * @param response the JSON object
+     */
     public List<ContactInfo> convertToList(final JSONObject response) {
         List<ContactInfo> list = new ArrayList<>();
         try {
@@ -69,6 +72,10 @@ public class ContactsViewModel extends AndroidViewModel {
         return new ArrayList<>();
     }
 
+    /**
+     * get the contacts of the user, be it verified or not
+     * @param verified boolean if the user  is a verified contact or not
+     */
     public void getContacts(int verified){
         String url = "https://team-6-tcss-450-web.herokuapp.com/contacts/get";
 
@@ -97,6 +104,10 @@ public class ContactsViewModel extends AndroidViewModel {
 
     }
 
+    /**
+     * accept the user as a contact
+     * @param otherEmail the other users email address
+     */
     public void acceptContact(String otherEmail){
         String url = "https://team-6-tcss-450-web.herokuapp.com/contacts/accept";
 
@@ -191,9 +202,5 @@ public class ContactsViewModel extends AndroidViewModel {
         //you should add much better error handling in a production release.
         //i.e. YOUR PROJECT
         Log.v("OH CRAP", "No Contacts Here");
-    }
-
-    public int getCurrentContactSenderStatus() {
-        return currentContactSenderStatus;
     }
 }

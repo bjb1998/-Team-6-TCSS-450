@@ -41,6 +41,11 @@ public class SignInViewModel extends AndroidViewModel {
     }
 
 
+    /**
+     * connect to the server to log in
+     * @param email the email inputted in the email field
+     * @param password the password inputted in the password field
+     */
     public void connect(final String email, final String password) {
         String url = "https://team-6-tcss-450-web.herokuapp.com/auth";
 

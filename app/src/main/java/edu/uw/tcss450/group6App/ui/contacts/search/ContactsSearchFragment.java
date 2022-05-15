@@ -27,6 +27,9 @@ import edu.uw.tcss450.group6App.model.UserInfoViewModel;
 import edu.uw.tcss450.group6App.ui.chat.ChatRecyclerViewAdapter;
 import edu.uw.tcss450.group6App.ui.contacts.ContactsFragmentDirections;
 
+/**
+ * A simple {@link Fragment} subclass.
+ */
 public class ContactsSearchFragment extends Fragment {
 
     private FragmentContactSearchBinding binding;
@@ -71,6 +74,10 @@ public class ContactsSearchFragment extends Fragment {
         );
     }
 
+    /**
+     * search the user database
+     * @param view the current ciew
+     */
     private void search(@NonNull View view) {
         mContactsSearchViewModel.searchUsers(binding.editSearch.getText().toString(),
                 binding.spinnerOptions.getSelectedItem().toString());

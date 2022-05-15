@@ -9,9 +9,9 @@ import androidx.lifecycle.ViewModelProvider;
  */
 public class UserInfoViewModel extends ViewModel {
 
-    private final String mEmail;
-    private final String mJwt;
-    private static int currentChatId;
+    private final String mEmail;        //Users current email address
+    private final String mJwt;          //JWT used for accessing services
+    private static int currentChatId;   //the current chat that the user is in, used when navigating multiple chats
 
     private UserInfoViewModel(String email, String jwt) {
         mEmail = email;

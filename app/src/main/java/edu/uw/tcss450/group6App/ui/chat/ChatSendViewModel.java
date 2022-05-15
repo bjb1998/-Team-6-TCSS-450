@@ -40,6 +40,12 @@ public class ChatSendViewModel extends AndroidViewModel {
         mResponse.observe(owner, observer);
     }
 
+    /**
+     * send the message to the server to update
+     * @param chatId the current chat id the user is in
+     * @param jwt the users JWT
+     * @param message the string of text the user typed in, will be sent to the server
+     */
     public void sendMessage(final int chatId, final String jwt, final String message) {
         String url = getApplication().getResources().getString(R.string.base_url_service) +
                 "messages";

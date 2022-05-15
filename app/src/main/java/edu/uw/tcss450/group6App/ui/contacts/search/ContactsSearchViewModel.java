@@ -49,6 +49,11 @@ public class ContactsSearchViewModel extends AndroidViewModel {
         mUsers.observe(owner, observer);
     }
 
+    /**
+     *  Call the web service to search the database with the given input
+     * @param name the inputted thing to search
+     * @param option the type of search the user wants to do (Email, name, username)
+     */
     public void searchUsers(final String name, final String option){
         String url = "https://team-6-tcss-450-web.herokuapp.com/search";
         JSONObject body = new JSONObject();
@@ -76,6 +81,10 @@ public class ContactsSearchViewModel extends AndroidViewModel {
 
     }
 
+    /**
+     * Convert the returned JSON to a list of ChatInfo Objects to be read on the app
+     * @param response the JSON object
+     */
     public List<ContactInfo> convertToList(final JSONObject response) {
         List<ContactInfo> list = new ArrayList<>();
         try {
@@ -134,6 +143,6 @@ public class ContactsSearchViewModel extends AndroidViewModel {
     private void handleError(final VolleyError error) {
         //you should add much better error handling in a production release.
         //i.e. YOUR PROJECT
-        Log.v("OH CRAP", "THE CONTACT IS ALREADY THERE WHY DID YOU PRESS THAT?!?!?!??!?!?");
+        Log.v("Error", "Contact Already exists");
     }
 }

@@ -76,10 +76,17 @@ public class RegisterFragment extends Fragment {
                 this::observeResponse);
     }
 
+    /**
+     * Begin the registration process
+     * @param button the registration button
+     */
     private void attemptRegister(final View button) {
         validateFirst();
     }
 
+    /**
+     * validate user first name
+     */
     private void validateFirst() {
         mNameValidator.processResult(
                 mNameValidator.apply(binding.editFirst.getText().toString().trim()),
@@ -87,6 +94,9 @@ public class RegisterFragment extends Fragment {
                 result -> binding.editFirst.setError("Please enter a first name."));
     }
 
+    /**
+     * validate user last name
+     */
     private void validateLast() {
         mNameValidator.processResult(
                 mNameValidator.apply(binding.editLast.getText().toString().trim()),
@@ -94,6 +104,9 @@ public class RegisterFragment extends Fragment {
                 result -> binding.editLast.setError("Please enter a last name."));
     }
 
+    /**
+     * validate user email
+     */
     private void validateEmail() {
         mEmailValidator.processResult(
                 mEmailValidator.apply(binding.editEmail.getText().toString().trim()),
@@ -101,6 +114,9 @@ public class RegisterFragment extends Fragment {
                 result -> binding.editEmail.setError("Please enter a valid Email address."));
     }
 
+    /**
+     * validate if the passwords in both fields where inputted match
+     */
     private void validatePasswordsMatch() {
         PasswordValidator matchValidator =
                 checkClientPredicate(
@@ -112,6 +128,9 @@ public class RegisterFragment extends Fragment {
                 result -> binding.editPassword1.setError("Passwords must match."));
     }
 
+    /**
+     * validate the password itself
+     */
     private void validatePassword() {
         mPassWordValidator.processResult(
                 mPassWordValidator.apply(binding.editPassword1.getText().toString()),
@@ -121,6 +140,9 @@ public class RegisterFragment extends Fragment {
                         " and one special character"));
     }
 
+    /**
+     * verify everything with the server
+     */
     private void verifyAuthWithServer() {
         mRegisterModel.connect(
                 binding.editFirst.getText().toString(),
@@ -132,6 +154,9 @@ public class RegisterFragment extends Fragment {
         //result of connect().
     }
 
+    /**
+     * move to the login screen
+     */
     private void navigateToLogin() {
         RegisterFragmentDirections.ActionRegisterFragmentToLoginFragment directions =
                 RegisterFragmentDirections.actionRegisterFragmentToLoginFragment();

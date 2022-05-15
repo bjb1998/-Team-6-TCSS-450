@@ -6,6 +6,9 @@ import java.io.Serializable;
 
 import edu.uw.tcss450.group6App.ui.contacts.search.ContactInfo;
 
+/**
+ * Encapsulate chat info details.
+ */
 public class ChatInfo implements Serializable {
 
     private final String mChatName;
