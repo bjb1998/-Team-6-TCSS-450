@@ -42,6 +42,7 @@ public class PushReceiver extends BroadcastReceiver {
         int chatId = -1;
         try{
             message = ChatMessage.createFromJsonString(intent.getStringExtra("message"));
+            Log.d("HBGNFJKLLDFBHGDFJLKGHDFJLFHGDFJIG", intent.getStringExtra("message"));
             chatId = intent.getIntExtra("chatid", -1);
         } catch (JSONException e) {
             //Web service sent us something unexpected...I can't deal with this.

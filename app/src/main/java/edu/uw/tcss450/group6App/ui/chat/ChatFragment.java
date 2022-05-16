@@ -91,6 +91,7 @@ public class ChatFragment extends Fragment {
                 });
 
         //Send button was clicked. Send the message via the SendViewModel
+
         binding.buttonSend.setOnClickListener(button -> {
             mSendModel.sendMessage(currentChatId,
                     mUserModel.getJwt(),

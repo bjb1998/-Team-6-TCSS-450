@@ -9,6 +9,8 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 
+import edu.uw.tcss450.group6App.model.UserInfoViewModel;
+
 /**
  * Encapsulate chat message details.
  */
@@ -17,13 +19,16 @@ public final class ChatMessage implements Serializable {
     private final int mMessageId;
     private final String mMessage;
     private final String mSender;
+    private String mUsername;
     private final String mTimeStamp;
+    private static UserInfoViewModel userInfo;
 
-    public ChatMessage(int messageId, String message, String sender, String timeStamp) {
+    public ChatMessage(int messageId, String message, String sender, String username, String timeStamp) {
         mMessageId = messageId;
         mMessage = message;
         mSender = sender;
         mTimeStamp = timeStamp;
+        mUsername = username;
     }
 
     /**
@@ -35,10 +40,13 @@ public final class ChatMessage implements Serializable {
      */
     public static ChatMessage createFromJsonString(final String cmAsJson) throws JSONException {
         final JSONObject msg = new JSONObject(cmAsJson);
-        return new ChatMessage(msg.getInt("messageid"),
+        Log.d("msg Creation", msg.toString());
+        ChatMessage cm =  new ChatMessage(msg.getInt("messageid"),
                 msg.getString("message"),
                 msg.getString("email"),
+                msg.getString("username"),
                 msg.getString("timestamp"));
+        return cm;
     }
 
     public String getMessage() {
@@ -55,6 +63,14 @@ public final class ChatMessage implements Serializable {
 
     public int getMessageId() {
         return mMessageId;
+    }
+
+    public void setUsername(String mUsername) {
+        this.mUsername = mUsername;
+    }
+
+    public String getUsername() {
+        return mUsername;
     }
 
     /**

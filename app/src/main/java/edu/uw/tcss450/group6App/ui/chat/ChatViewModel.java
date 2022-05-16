@@ -186,10 +186,12 @@ public class ChatViewModel extends AndroidViewModel {
             JSONArray messages = response.getJSONArray("rows");
             for(int i = 0; i < messages.length(); i++) {
                 JSONObject message = messages.getJSONObject(i);
+                Log.d("MESSAGE", message.toString());
                 ChatMessage cMessage = new ChatMessage(
                         message.getInt("messageid"),
                         message.getString("message"),
                         message.getString("email"),
+                        message.getString("username"),
                         message.getString("timestamp")
                 );
                 if (!list.contains(cMessage)) {

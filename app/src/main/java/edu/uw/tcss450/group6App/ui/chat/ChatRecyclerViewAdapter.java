@@ -19,6 +19,7 @@ import java.util.List;
 
 import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentChatMessageBinding;
+import edu.uw.tcss450.group6App.model.UserInfoViewModel;
 
 public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerViewAdapter.MessageViewHolder> {
 
@@ -102,7 +103,7 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
                 card.requestLayout();
             } else {
                 //This message is from another user. Format it as such
-                binding.textMessage.setText(message.getSender() +
+                binding.textMessage.setText(message.getUsername() +
                         ": " + message.getMessage());
                 ViewGroup.MarginLayoutParams layoutParams =
                         (ViewGroup.MarginLayoutParams) card.getLayoutParams();
