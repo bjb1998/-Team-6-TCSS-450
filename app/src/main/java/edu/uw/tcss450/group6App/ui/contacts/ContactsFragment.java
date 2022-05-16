@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -12,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,6 +68,16 @@ public class ContactsFragment extends Fragment {
                         mContactsViewModel.convertToList(new JSONObject())
                 )
          );
+
+        //Let the user know whats going on with a Snackbar
+        final Observer<String> errorObserver = newName -> {
+            if(!newName.equals(""))
+                Snackbar.make(view,
+                        mContactsViewModel.getmStatus().getValue(),
+                        Snackbar.LENGTH_SHORT).show();
+        };
+
+        mContactsViewModel.getmStatus().observe(getViewLifecycleOwner(), errorObserver);
 
         binding.recyclerContactsVerified.setAdapter(
                 new ContactsVerifiedRecyclerViewAdapter(

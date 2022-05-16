@@ -1,6 +1,7 @@
 package edu.uw.tcss450.group6App.ui.contacts.search;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,6 +70,13 @@ public class ContactsSearchFragment extends Fragment {
         mContactsSearchViewModel.addResponseObserver(getViewLifecycleOwner(),
                 this::observeResponse);
 
+        //Let the user know whats going on with a Snackbar
+        final Observer<String> errorObserver = newName -> {
+            Snackbar.make(view, "Contact Already Exists", Snackbar.LENGTH_SHORT).show();
+        };
+
+        mContactsSearchViewModel.getmError().observe(getViewLifecycleOwner(), errorObserver);
+
         binding.recyclerContacts.setAdapter(
                 new ContactsRecyclerViewAdapter(
                         mContactsSearchViewModel.convertToList(new JSONObject())
@@ -76,7 +86,7 @@ public class ContactsSearchFragment extends Fragment {
 
     /**
      * search the user database
-     * @param view the current ciew
+     * @param view the current view
      */
     private void search(@NonNull View view) {
         mContactsSearchViewModel.searchUsers(binding.editSearch.getText().toString(),
@@ -84,6 +94,7 @@ public class ContactsSearchFragment extends Fragment {
     }
 
     private void observeResponse(final JSONObject response) {
+        Log.d("RESPONSE", response.toString());
         if (response.length() <= 0) {
                     binding.editSearch.setError(
                             "No results: ");
