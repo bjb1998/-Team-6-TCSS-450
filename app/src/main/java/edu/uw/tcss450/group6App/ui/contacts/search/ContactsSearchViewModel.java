@@ -33,12 +33,17 @@ public class ContactsSearchViewModel extends AndroidViewModel {
      */
     private MutableLiveData<JSONObject> mUsers;
     private String currentEmail;
+    private MutableLiveData<String> mError;
 
     public ContactsSearchViewModel(@NonNull Application application) {
         super(application);
         mUsers = new MutableLiveData<>();
+        mError = new MutableLiveData<>();
         mUsers.setValue(new JSONObject());
+        mError.setValue("");
     }
+
+    public MutableLiveData<String> getmError(){return mError;}
 
     public void setCurrentEmail(String email){
         currentEmail = email;
@@ -141,8 +146,7 @@ public class ContactsSearchViewModel extends AndroidViewModel {
     }
 
     private void handleError(final VolleyError error) {
-        //you should add much better error handling in a production release.
-        //i.e. YOUR PROJECT
-        Log.v("Error", "Contact Already exists");
+        mError.setValue("Contact Already Exists");
+        Log.d("Error", mError.getValue());
     }
 }

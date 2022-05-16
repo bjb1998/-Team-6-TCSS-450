@@ -28,11 +28,16 @@ public class ContactsViewModel extends AndroidViewModel {
 
     private MutableLiveData<JSONObject> mUsers;
     private String currentEmail;
+    private MutableLiveData<String> mStatus;
+
+    public MutableLiveData<String> getmStatus(){ return mStatus;}
 
     public ContactsViewModel(@NonNull Application application) {
         super(application);
         mUsers = new MutableLiveData<>();
+        mStatus = new MutableLiveData<>();
         mUsers.setValue(new JSONObject());
+        mStatus.setValue("");
     }
 
     public void setCurrentEmail(String email){
@@ -134,6 +139,8 @@ public class ContactsViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext())
                 .add(request);
 
+        mStatus.setValue("Contact Accepted");
+
     }
 
 
@@ -164,6 +171,7 @@ public class ContactsViewModel extends AndroidViewModel {
         Volley.newRequestQueue(getApplication().getApplicationContext())
                 .add(request);
 
+        mStatus.setValue("Contact Removed");
 
     }
 
@@ -192,6 +200,8 @@ public class ContactsViewModel extends AndroidViewModel {
         //Instantiate the RequestQueue and add the request to the queue
         Volley.newRequestQueue(getApplication().getApplicationContext())
                 .add(request);
+
+        mStatus.setValue("Chat with " + otherEmail + " created");
     }
 
     private void handleSuccess(final JSONObject response) {
