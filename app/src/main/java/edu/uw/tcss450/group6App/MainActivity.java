@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mNewMessageModel.addMessageCountObserver(this, count -> {
-            BadgeDrawable badge = binding.navView.getOrCreateBadge(R.id.navigation_chat);
+            BadgeDrawable badge = binding.navView.getOrCreateBadge(R.id.navigation_chat_menu);
             badge.setMaxCharacterCount(2);
             if (count > 0) {
                 //new messages! update and show the notification badge.
