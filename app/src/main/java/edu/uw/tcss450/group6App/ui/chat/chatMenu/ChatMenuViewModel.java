@@ -105,7 +105,7 @@ public class ChatMenuViewModel extends AndroidViewModel {
     private void handleError(final VolleyError error) {
         //you should add much better error handling in a production release.
         //i.e. YOUR PROJECT
-        Log.v("OH CRAP", "Wheres the chat????");
+        Log.wtf("OH CRAP", "Wheres the chat????");
     }
 
 
