@@ -311,6 +311,8 @@ public class MainActivity extends AppCompatActivity {
         prefs.edit().remove(getString(R.string.keys_prefs_jwt)).apply();
         //End the app completely
         finishAndRemoveTask();
+
+
     }
 
 
