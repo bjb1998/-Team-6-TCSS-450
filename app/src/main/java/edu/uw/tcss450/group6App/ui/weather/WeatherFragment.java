@@ -7,9 +7,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.json.JSONException;
 
 import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
 import edu.uw.tcss450.group6App.model.LocationViewModel;
@@ -99,7 +102,16 @@ public class WeatherFragment extends Fragment {
 
         // pressing a button code
         mWeatherModel.addResponseObserver(getViewLifecycleOwner(), result ->
-                binding.textResponseOutput.setText(result.toString()));
+        {
+            // TODO this is how you access the json object data; now split and add to weather display
+            try {
+                binding.textResponseOutput.setText("Temp: " +
+                        result.getJSONArray("data").getJSONObject(0).getString("temp") +
+                        " deg Celsius");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }); // was: result.toString()
         binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGet());
 
     }
