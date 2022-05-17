@@ -1,4 +1,4 @@
-package edu.uw.tcss450.group6App.ui.weather;
+package edu.uw.tcss450.group6App.model;
 
 import android.app.Application;
 import android.util.Log;
@@ -21,17 +21,35 @@ import org.json.JSONObject;
 import java.nio.charset.Charset;
 import java.util.Objects;
 
+import edu.uw.tcss450.group6App.model.LocationViewModel;
+
 /**
  * ViewModel for data received from weatherbit.io
  */
 public class WeatherViewModel extends AndroidViewModel {
 
+
+    /**
+     * API key from weatherbit.io from Robert's UW email.
+     */
+    private static final String API_KEY = "d76b1605bb534d7ea82ace219ff60b96";
+
+    private String weatherUrl = "";
     private final MutableLiveData<JSONObject> mResponse;
+    private LocationViewModel mLocationModel;
 
     public WeatherViewModel(@NonNull Application application) {
         super(application);
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
+    }
+
+    /**
+     * Setter for the LocationViewModel used to obtain local users weather data.
+     * @param model LocationViewModel
+     */
+    public void setLocationModel(final LocationViewModel model) {
+        mLocationModel = model;
     }
 
     public void addResponseObserver(@NonNull LifecycleOwner owner,
@@ -41,7 +59,7 @@ public class WeatherViewModel extends AndroidViewModel {
 
     // TODO: modify to work with weatherbit.io
     public void connectGet() {
-        String url = "https://cfb3-tcss450-labs-2021sp.herokuapp.com/hello";
+        String url = "https://cfb3-tcss450-labs-2021sp.herokuapp.com/hello"; // TODO weather.io
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,

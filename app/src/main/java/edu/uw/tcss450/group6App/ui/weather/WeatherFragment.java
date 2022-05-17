@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
 import edu.uw.tcss450.group6App.model.LocationViewModel;
+import edu.uw.tcss450.group6App.model.WeatherViewModel;
 
 /**
  * Contains all weather related functionality.
@@ -22,10 +23,6 @@ import edu.uw.tcss450.group6App.model.LocationViewModel;
  * create an instance of this fragment.
  */
 public class WeatherFragment extends Fragment {
-    /**
-     * API key from weatherbit.io from Robert's UW email. TODO might have to go in WeatherViewModel.java
-     */
-    private static final String apiKey = "d76b1605bb534d7ea82ace219ff60b96";
 
 
     private WeatherViewModel mWeatherModel;
@@ -87,9 +84,24 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+        // TODO: trying to get the location, but i need to use it for the weather
+        // TODO: since the location is received here i need to pass it to weather model
+        //FragmentLocationBinding binding = FragmentLocationBinding.bind(getView());
+        mLocationModel = new ViewModelProvider(getActivity())
+                .get(LocationViewModel.class);
+        mLocationModel.addLocationObserver(getViewLifecycleOwner(), location ->
+                binding.textLatLong.setText(location.toString()));
+
+        // TODO location doesn't have to be displayed in app, remove code that does that
+        mWeatherModel.setLocationModel(mLocationModel);
+
+        // pressing a button code
         mWeatherModel.addResponseObserver(getViewLifecycleOwner(), result ->
                 binding.textResponseOutput.setText(result.toString()));
         binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGet());
+
     }
 
 
