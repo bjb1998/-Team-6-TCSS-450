@@ -72,6 +72,7 @@ public class ContactsSearchFragment extends Fragment {
 
         //Let the user know whats going on with a Snackbar
         final Observer<String> statusObserver = newName -> {
+            if(newName.equals("")) return;
             Snackbar.make(view, mContactsSearchViewModel.getStatus().getValue(), Snackbar.LENGTH_SHORT).show();
         };
 
