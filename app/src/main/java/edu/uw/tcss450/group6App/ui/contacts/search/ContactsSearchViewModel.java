@@ -22,8 +22,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.uw.tcss450.group6App.ui.chat.ChatMessage;
-
 public class ContactsSearchViewModel extends AndroidViewModel {
 
     /**
@@ -33,17 +31,17 @@ public class ContactsSearchViewModel extends AndroidViewModel {
      */
     private MutableLiveData<JSONObject> mUsers;
     private String currentEmail;
-    private MutableLiveData<String> mError;
+    MutableLiveData<String> mStatus;
 
     public ContactsSearchViewModel(@NonNull Application application) {
         super(application);
         mUsers = new MutableLiveData<>();
-        mError = new MutableLiveData<>();
+        mStatus = new MutableLiveData<>();
         mUsers.setValue(new JSONObject());
-        mError.setValue("");
+        mStatus.setValue("");
     }
 
-    public MutableLiveData<String> getmError(){return mError;}
+    public MutableLiveData<String> getStatus(){return mStatus;}
 
     public void setCurrentEmail(String email){
         currentEmail = email;
@@ -74,7 +72,7 @@ public class ContactsSearchViewModel extends AndroidViewModel {
                 url,
                 body,
                 mUsers::setValue,
-                this::handleError);
+                this::handleNoResult);
 
         request.setRetryPolicy(new DefaultRetryPolicy(
                 10_000,
@@ -142,11 +140,18 @@ public class ContactsSearchViewModel extends AndroidViewModel {
     }
 
     private void handleSuccess(final JSONObject response) {
+        mStatus.setValue("Contact Added");
         Log.d("MESSAGE", response.toString());
     }
 
     private void handleError(final VolleyError error) {
-        mError.setValue("Contact Already Exists");
-        Log.d("Error", mError.getValue());
+        mStatus.setValue("Contact Already Exists");
+        Log.d("Error", mStatus.getValue());
+    }
+
+    private void handleNoResult(final VolleyError error) {
+        mStatus.setValue("No Result");
+        Log.d("STATUS", mStatus.getValue());
+        Log.d("Error", mStatus.getValue());
     }
 }
