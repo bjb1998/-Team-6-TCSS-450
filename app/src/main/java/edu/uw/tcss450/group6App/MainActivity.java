@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -151,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_settings) {
 
+            //signOut(); remove
             openSettings();
             return true;
         }
@@ -203,7 +205,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         MainActivity.super.onBackPressed();
+                        signOut();
                     }
+
                 }).setNegativeButton("Cancel", null);
 
         AlertDialog alert = builder.create();
@@ -297,5 +301,21 @@ public class MainActivity extends AppCompatActivity {
                     });
         }
     }
+
+
+    private void signOut() {
+        SharedPreferences prefs =
+                getSharedPreferences(
+                        getString(R.string.keys_shared_prefs),
+                        Context.MODE_PRIVATE);
+        prefs.edit().remove(getString(R.string.keys_prefs_jwt)).apply();
+        //End the app completely
+        finishAndRemoveTask();
+
+
+    }
+
+
+
 
 }
