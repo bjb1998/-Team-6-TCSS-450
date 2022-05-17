@@ -1,6 +1,7 @@
 package edu.uw.tcss450.group6App.model;
 
 import android.app.Application;
+import android.location.Location;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -59,7 +60,10 @@ public class WeatherViewModel extends AndroidViewModel {
 
     // TODO: modify to work with weatherbit.io
     public void connectGet() {
-        String url = "https://cfb3-tcss450-labs-2021sp.herokuapp.com/hello"; // TODO weather.io
+        final Location location = mLocationModel.getCurrentLocation();
+        String url = "https://api.weatherbit.io/v2.0/current?" + "lat=" + location.getLatitude() +
+                "&lon=" + location.getLongitude() + "&key=" + API_KEY;
+
         Request request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
