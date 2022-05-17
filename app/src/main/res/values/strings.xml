@@ -59,4 +59,11 @@
     <string name="_10_days">10 Days</string>
     <string name="today">Today</string>
     <string name="label_location">Current location</string>
+
+    <!-- Auto Sign in -->
+    <string name="switch_sign_in">Stay Signed in</string>
+    <string name="keys_shared_prefs">My Auth App Shared Prefs</string>
+    <string name="keys_prefs_jwt">Sharded Prefs JWT</string>
+    <string name="action_sign_out">Sign Out</string>
+
 </resources>
