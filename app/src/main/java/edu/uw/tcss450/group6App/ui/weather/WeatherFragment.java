@@ -2,13 +2,21 @@ package edu.uw.tcss450.group6App.ui.weather;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import edu.uw.tcss450.group6App.R;
+import org.json.JSONException;
+
+import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
+import edu.uw.tcss450.group6App.model.LocationViewModel;
+import edu.uw.tcss450.group6App.model.WeatherViewModel;
 
 /**
  * Contains all weather related functionality.
@@ -18,6 +26,12 @@ import edu.uw.tcss450.group6App.R;
  * create an instance of this fragment.
  */
 public class WeatherFragment extends Fragment {
+
+
+    private WeatherViewModel mWeatherModel;
+    private LocationViewModel mLocationModel;
+
+    private FragmentWeatherBinding binding;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,12 +71,50 @@ public class WeatherFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mWeatherModel = new ViewModelProvider(getActivity())
+                .get(WeatherViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_weather, container, false);
+        //return inflater.inflate(R.layout.fragment_weather, container, false);
+        binding = FragmentWeatherBinding.inflate(inflater);
+        return binding.getRoot();
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        // TODO: trying to get the location, but i need to use it for the weather
+        // TODO: since the location is received here i need to pass it to weather model
+        //FragmentLocationBinding binding = FragmentLocationBinding.bind(getView());
+        mLocationModel = new ViewModelProvider(getActivity())
+                .get(LocationViewModel.class);
+        mLocationModel.addLocationObserver(getViewLifecycleOwner(), location ->
+                binding.textLatLong.setText(location.toString()));
+
+        // TODO location doesn't have to be displayed in app, remove code that does that
+        mWeatherModel.setLocationModel(mLocationModel);
+
+        // pressing a button code
+        mWeatherModel.addResponseObserver(getViewLifecycleOwner(), result ->
+        {
+            // TODO this is how you access the json object data; now split and add to weather display
+            try {
+                binding.textResponseOutput.setText("Temp: " +
+                        result.getJSONArray("data").getJSONObject(0).getString("temp") +
+                        " deg Celsius");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }); // was: result.toString()
+        binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGet());
+
+    }
+
+
 }
