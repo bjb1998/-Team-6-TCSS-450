@@ -1,4 +1,4 @@
-package edu.uw.tcss450.group6App.ui.weather;
+package edu.uw.tcss450.group6App.model;
 
 import android.location.Location;
 

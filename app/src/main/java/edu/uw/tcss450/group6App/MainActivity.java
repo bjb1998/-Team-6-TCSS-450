@@ -38,7 +38,7 @@ import edu.uw.tcss450.group6App.model.NewMessageCountViewModel;
 import edu.uw.tcss450.group6App.model.UserInfoViewModel;
 import edu.uw.tcss450.group6App.services.PushReceiver;
 import edu.uw.tcss450.group6App.ui.settings.SettingsFragment;
-import edu.uw.tcss450.group6App.ui.weather.LocationViewModel;
+import edu.uw.tcss450.group6App.model.LocationViewModel;
 
 public class MainActivity extends AppCompatActivity {
 

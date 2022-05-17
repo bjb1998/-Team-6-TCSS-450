@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
+import edu.uw.tcss450.group6App.model.LocationViewModel;
 
 /**
  * Contains all weather related functionality.
