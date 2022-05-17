@@ -71,11 +71,12 @@ public class ContactsSearchFragment extends Fragment {
                 this::observeResponse);
 
         //Let the user know whats going on with a Snackbar
-        final Observer<String> errorObserver = newName -> {
-            Snackbar.make(view, "Contact Already Exists", Snackbar.LENGTH_SHORT).show();
+        final Observer<String> statusObserver = newName -> {
+            if(newName.equals("")) return;
+            Snackbar.make(view, mContactsSearchViewModel.getStatus().getValue(), Snackbar.LENGTH_SHORT).show();
         };
 
-        mContactsSearchViewModel.getmError().observe(getViewLifecycleOwner(), errorObserver);
+        mContactsSearchViewModel.mStatus.observe(getViewLifecycleOwner(), statusObserver);
 
         binding.recyclerContacts.setAdapter(
                 new ContactsRecyclerViewAdapter(
@@ -95,15 +96,21 @@ public class ContactsSearchFragment extends Fragment {
 
     private void observeResponse(final JSONObject response) {
         Log.d("RESPONSE", response.toString());
-        if (response.length() <= 0) {
-                    binding.editSearch.setError(
-                            "No results: ");
-        } else {
-            binding.recyclerContacts.setAdapter(
-                    new ContactsRecyclerViewAdapter(
-                            mContactsSearchViewModel.convertToList(response)
-                    )
-            );
+
+        try {
+            if (response.getJSONObject("message").getJSONArray("rows").length() <= 0) {
+                binding.editSearch.setError(
+                        "No results: ");
+            } else {
+                binding.recyclerContacts.setAdapter(
+                        new ContactsRecyclerViewAdapter(
+                                mContactsSearchViewModel.convertToList(response)
+                        )
+                );
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+
     }
 }

@@ -21,7 +21,6 @@ public final class ChatMessage implements Serializable {
     private final String mSender;
     private String mUsername;
     private final String mTimeStamp;
-    private static UserInfoViewModel userInfo;
 
     public ChatMessage(int messageId, String message, String sender, String username, String timeStamp) {
         mMessageId = messageId;
