@@ -77,6 +77,8 @@ public class WeatherFragment extends Fragment {
         }
         mWeatherModel = new ViewModelProvider(getActivity())
                 .get(WeatherViewModel.class);
+        mLocationModel = new ViewModelProvider(requireActivity())
+                .get(LocationViewModel.class);
     }
 
     @Override
@@ -96,8 +98,7 @@ public class WeatherFragment extends Fragment {
         // TODO: trying to get the location, but i need to use it for the weather
         // TODO: since the location is received here i need to pass it to weather model
         //FragmentLocationBinding binding = FragmentLocationBinding.bind(getView());
-        mLocationModel = new ViewModelProvider(requireActivity())
-                .get(LocationViewModel.class);
+
         // TODO: lines below displayed the lat and long of location from lab 6
         //mLocationModel.addLocationObserver(getViewLifecycleOwner(), location ->
                 //binding.textLatLong.setText(location.toString()));

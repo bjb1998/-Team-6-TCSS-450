@@ -1,6 +1,7 @@
 package edu.uw.tcss450.group6App.model;
 
 import android.location.Location;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
@@ -18,7 +19,11 @@ public class LocationViewModel extends ViewModel {
     private MutableLiveData<Location> mLocation;
 
     public LocationViewModel() {
-        mLocation = new MediatorLiveData<>();
+        Location defaultLocation = new Location("");
+        defaultLocation .setLatitude(0.0d);
+        defaultLocation .setLongitude(0.0d);
+
+        mLocation = new MutableLiveData<Location>(defaultLocation);
     }
 
     public void addLocationObserver(@NonNull LifecycleOwner owner,
