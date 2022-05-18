@@ -103,7 +103,6 @@ public class WeatherFragment extends Fragment {
         //mLocationModel.addLocationObserver(getViewLifecycleOwner(), location ->
                 //binding.textLatLong.setText(location.toString()));
 
-        // TODO location doesn't have to be displayed in app, remove code that does that
         mWeatherModel.setLocationModel(mLocationModel);
 
         binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGet());
@@ -119,6 +118,10 @@ public class WeatherFragment extends Fragment {
                 final StringBuilder local = new StringBuilder();
                 local.append(obj.getString("city_name") + ", " + obj.getString("state_code"));
 
+                // weather
+                final StringBuilder weather = new StringBuilder();
+                weather.append(obj.getJSONObject("weather").getString("description"));
+
                 // temp
                 final StringBuilder temp = new StringBuilder();
                 double t = obj.getDouble("temp");
@@ -128,6 +131,7 @@ public class WeatherFragment extends Fragment {
 
                 binding.textResponseOutput.setText(temp.toString());
                 binding.textLatLong.setText(local.toString());
+                binding.description.setText(weather.toString());
             } catch (final JSONException e) {
                 e.printStackTrace();
             }
