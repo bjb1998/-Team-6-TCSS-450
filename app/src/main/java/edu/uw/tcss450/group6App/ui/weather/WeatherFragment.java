@@ -105,6 +105,8 @@ public class WeatherFragment extends Fragment {
         // TODO location doesn't have to be displayed in app, remove code that does that
         mWeatherModel.setLocationModel(mLocationModel);
 
+        binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGet());
+
         // pressing a button code
         mWeatherModel.addResponseObserver(getViewLifecycleOwner(), result ->
         {
@@ -129,7 +131,7 @@ public class WeatherFragment extends Fragment {
                 e.printStackTrace();
             }
         });
-        binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGet());
+        //binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGet());
 
     }
 
