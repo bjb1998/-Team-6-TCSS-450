@@ -12,7 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Objects;
 
 import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
 import edu.uw.tcss450.group6App.model.LocationViewModel;
@@ -92,10 +96,11 @@ public class WeatherFragment extends Fragment {
         // TODO: trying to get the location, but i need to use it for the weather
         // TODO: since the location is received here i need to pass it to weather model
         //FragmentLocationBinding binding = FragmentLocationBinding.bind(getView());
-        mLocationModel = new ViewModelProvider(getActivity())
+        mLocationModel = new ViewModelProvider(requireActivity())
                 .get(LocationViewModel.class);
-        mLocationModel.addLocationObserver(getViewLifecycleOwner(), location ->
-                binding.textLatLong.setText(location.toString()));
+        // TODO: lines below displayed the lat and long of location from lab 6
+        //mLocationModel.addLocationObserver(getViewLifecycleOwner(), location ->
+                //binding.textLatLong.setText(location.toString()));
 
         // TODO location doesn't have to be displayed in app, remove code that does that
         mWeatherModel.setLocationModel(mLocationModel);
@@ -105,13 +110,25 @@ public class WeatherFragment extends Fragment {
         {
             // TODO this is how you access the json object data; now split and add to weather display
             try {
-                binding.textResponseOutput.setText("Temp: " +
-                        result.getJSONArray("data").getJSONObject(0).getString("temp") +
-                        " deg Celsius");
-            } catch (JSONException e) {
+                final JSONArray arr = result.getJSONArray("data");
+                final JSONObject obj = arr.getJSONObject(0);
+                // location
+                final StringBuilder local = new StringBuilder();
+                local.append(obj.getString("city_name") + ", " + obj.getString("state_code"));
+
+                // temp
+                final StringBuilder temp = new StringBuilder();
+                double t = obj.getDouble("temp");
+                t = t * 1.8 + 32;
+                final String degree = "" + (char) 176;
+                temp.append("Temp: " + String.format("%.2f", t) + degree +" F");
+
+                binding.textResponseOutput.setText(temp.toString());
+                binding.textLatLong.setText(local.toString());
+            } catch (final JSONException e) {
                 e.printStackTrace();
             }
-        }); // was: result.toString()
+        });
         binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGet());
 
     }
