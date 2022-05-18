@@ -22,8 +22,6 @@ import org.json.JSONObject;
 import java.nio.charset.Charset;
 import java.util.Objects;
 
-import edu.uw.tcss450.group6App.model.LocationViewModel;
-
 /**
  * ViewModel for data received from weatherbit.io
  */
@@ -35,7 +33,6 @@ public class WeatherViewModel extends AndroidViewModel {
      */
     private static final String API_KEY = "d76b1605bb534d7ea82ace219ff60b96";
 
-    private String weatherUrl = "";
     private final MutableLiveData<JSONObject> mResponse;
     private LocationViewModel mLocationModel;
 
@@ -58,13 +55,13 @@ public class WeatherViewModel extends AndroidViewModel {
         mResponse.observe(owner, observer);
     }
 
-    // TODO: modify to work with weatherbit.io
+
     public void connectGet() {
         final Location location = mLocationModel.getCurrentLocation();
         String url = "https://api.weatherbit.io/v2.0/current?" + "lat=" + location.getLatitude() +
                 "&lon=" + location.getLongitude() + "&key=" + API_KEY;
 
-        Request request = new JsonObjectRequest(
+        Request<JSONObject> request = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
                 null, //no body for this get request
