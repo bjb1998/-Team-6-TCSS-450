@@ -22,17 +22,20 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.uw.tcss450.group6App.ui.contacts.search.ContactInfo;
-
 public class ChatMenuViewModel extends AndroidViewModel {
 
     private MutableLiveData<JSONObject> mChats;
     private String currentEmail;
+    private MutableLiveData<String> mStatus;
+
+    public MutableLiveData<String> getmStatus(){ return mStatus;}
 
     public ChatMenuViewModel(@NonNull Application application) {
         super(application);
         mChats = new MutableLiveData<>();
+        mStatus = new MutableLiveData<>();
         mChats.setValue(new JSONObject());
+        mStatus.setValue("");
     }
 
     public void setCurrentEmail(String email){
@@ -98,7 +101,37 @@ public class ChatMenuViewModel extends AndroidViewModel {
                 .add(request);
     }
 
-    private void handleSuccess(final JSONObject response) {
+    /**
+     * get the chats of the user from the web service
+     */
+    public void deleteChat(int chatId){
+        String url = "https://team-6-tcss-450-web.herokuapp.com/chat/delete";
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("chatId", chatId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Request request = new JsonObjectRequest(
+                Request.Method.POST,
+                url,
+                body,
+                this::handleChatDeletionSuccess,
+                this::handleError);
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //Instantiate the RequestQueue and add the request to the queue
+        Volley.newRequestQueue(getApplication().getApplicationContext())
+                .add(request);
+    }
+
+    private void handleChatDeletionSuccess(final JSONObject response) {
+        mStatus.setValue("Chat Deleted");
         Log.d("MESSAGE", response.toString());
     }
 
