@@ -112,6 +112,19 @@ public class WeatherFragment extends Fragment {
             try {
                 final JSONArray arr = result.getJSONArray("data");
                 final JSONObject obj = arr.getJSONObject(0);
+
+                // time
+                final StringBuilder time = new StringBuilder();
+                time.append(obj.getString("ob_time"));
+
+                // sunrise
+                final StringBuilder sunrise = new StringBuilder();
+                sunrise.append("Sunrise: " + obj.getString("sunrise"));
+
+                // sunset
+                final StringBuilder sunset = new StringBuilder();
+                sunset.append("Sunset: " + obj.getString("sunset"));
+
                 // location
                 final StringBuilder local = new StringBuilder();
                 local.append(obj.getString("city_name") + ", " + obj.getString("state_code"));
@@ -127,7 +140,10 @@ public class WeatherFragment extends Fragment {
                 final String degree = "" + (char) 176;
                 temp.append("Temp: " + String.format("%.2f", t) + degree +" F");
 
-                binding.textResponseOutput.setText(temp.toString());
+                binding.time.setText(time.toString());
+                binding.sunrise.setText(sunrise.toString());
+                binding.sunset.setText(sunset.toString());
+                binding.temperature.setText(temp.toString());
                 binding.location.setText(local.toString());
                 binding.description.setText(weather.toString());
             } catch (final JSONException e) {
