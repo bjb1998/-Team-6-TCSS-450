@@ -45,6 +45,12 @@ class ContactsVerifiedRecyclerViewAdapter extends RecyclerView.Adapter<ContactsV
     @Override
     public void onBindViewHolder(@NonNull ContactsVerifiedRecyclerViewAdapter.ContactViewHolder holder, int position) {
         holder.setContact(mUsers.get(position));
+        holder.binding.buttonChat.setOnClickListener(button ->
+                viewModel.createChat(holder.mContact.getEmail())
+        );
+        holder.binding.buttonRemove.setOnClickListener(button ->
+                holder.viewModel.removeContact(holder.mContact.getEmail())
+        );
     }
 
     @Override
@@ -70,9 +76,6 @@ class ContactsVerifiedRecyclerViewAdapter extends RecyclerView.Adapter<ContactsV
             mContact = contact;
             binding.textUsername.setText(contact.getUsername());
             binding.textName.setText(contact.getFName() + " " + contact.getLName());
-            binding.buttonChat.setOnClickListener(button ->
-                    viewModel.createChat(mContact.getEmail())
-            );
         }
     }
 }
