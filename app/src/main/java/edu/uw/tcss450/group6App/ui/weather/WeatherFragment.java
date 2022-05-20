@@ -75,7 +75,7 @@ public class WeatherFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        mWeatherModel = new ViewModelProvider(getActivity())
+        mWeatherModel = new ViewModelProvider(requireActivity())
                 .get(WeatherViewModel.class);
         mLocationModel = new ViewModelProvider(requireActivity())
                 .get(LocationViewModel.class);
@@ -95,8 +95,6 @@ public class WeatherFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        // TODO: trying to get the location, but i need to use it for the weather
-        // TODO: since the location is received here i need to pass it to weather model
         //FragmentLocationBinding binding = FragmentLocationBinding.bind(getView());
 
         // TODO: lines below displayed the lat and long of location from lab 6
@@ -130,7 +128,7 @@ public class WeatherFragment extends Fragment {
                 temp.append("Temp: " + String.format("%.2f", t) + degree +" F");
 
                 binding.textResponseOutput.setText(temp.toString());
-                binding.textLatLong.setText(local.toString());
+                binding.location.setText(local.toString());
                 binding.description.setText(weather.toString());
             } catch (final JSONException e) {
                 e.printStackTrace();
