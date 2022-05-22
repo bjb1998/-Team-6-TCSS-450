@@ -20,8 +20,8 @@ public class LocationViewModel extends ViewModel {
 
     public LocationViewModel() {
         Location defaultLocation = new Location("");
-        defaultLocation .setLatitude(0.0d);
-        defaultLocation .setLongitude(0.0d);
+        defaultLocation .setLatitude(47.253078d);
+        defaultLocation .setLongitude(-122.441528d);
 
         mLocation = new MutableLiveData<Location>(defaultLocation);
     }

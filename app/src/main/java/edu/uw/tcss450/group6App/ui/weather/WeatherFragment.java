@@ -1,9 +1,14 @@
 package edu.uw.tcss450.group6App.ui.weather;
 
+import android.graphics.drawable.AnimatedImageDrawable;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.graphics.drawable.IconKt;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.Objects;
 
+import edu.uw.tcss450.group6App.MainActivity;
 import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
 import edu.uw.tcss450.group6App.model.LocationViewModel;
 import edu.uw.tcss450.group6App.model.WeatherViewModel;
@@ -75,7 +82,7 @@ public class WeatherFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        mWeatherModel = new ViewModelProvider(getActivity())
+        mWeatherModel = new ViewModelProvider(requireActivity())
                 .get(WeatherViewModel.class);
         mLocationModel = new ViewModelProvider(requireActivity())
                 .get(LocationViewModel.class);
@@ -90,13 +97,12 @@ public class WeatherFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 
-        // TODO: trying to get the location, but i need to use it for the weather
-        // TODO: since the location is received here i need to pass it to weather model
         //FragmentLocationBinding binding = FragmentLocationBinding.bind(getView());
 
         // TODO: lines below displayed the lat and long of location from lab 6
@@ -114,13 +120,30 @@ public class WeatherFragment extends Fragment {
             try {
                 final JSONArray arr = result.getJSONArray("data");
                 final JSONObject obj = arr.getJSONObject(0);
+
+                // time
+                final StringBuilder time = new StringBuilder();
+                time.append(obj.getString("ob_time"));
+
+                // sunrise
+                final StringBuilder sunrise = new StringBuilder();
+                sunrise.append("Sunrise: " + obj.getString("sunrise"));
+
+                // sunset
+                final StringBuilder sunset = new StringBuilder();
+                sunset.append("Sunset: " + obj.getString("sunset"));
+
                 // location
                 final StringBuilder local = new StringBuilder();
                 local.append(obj.getString("city_name") + ", " + obj.getString("state_code"));
 
                 // weather
+                final JSONObject w = obj.getJSONObject("weather");
                 final StringBuilder weather = new StringBuilder();
-                weather.append(obj.getJSONObject("weather").getString("description"));
+                weather.append(w.getString("description"));
+
+                // icon TODO: implement
+
 
                 // temp
                 final StringBuilder temp = new StringBuilder();
@@ -129,8 +152,11 @@ public class WeatherFragment extends Fragment {
                 final String degree = "" + (char) 176;
                 temp.append("Temp: " + String.format("%.2f", t) + degree +" F");
 
-                binding.textResponseOutput.setText(temp.toString());
-                binding.textLatLong.setText(local.toString());
+                binding.time.setText(time.toString());
+                binding.sunrise.setText(sunrise.toString());
+                binding.sunset.setText(sunset.toString());
+                binding.temperature.setText(temp.toString());
+                binding.location.setText(local.toString());
                 binding.description.setText(weather.toString());
             } catch (final JSONException e) {
                 e.printStackTrace();
