@@ -25,7 +25,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorPrimaryDark"
         android:text="@string/label_location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +36,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="104dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.107"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.107"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +58,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +69,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="104dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +80,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="152dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.71"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +91,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_label" />
@@ -107,7 +100,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/today"
-        android:textColor="#3F51B5"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/tomorrow_button"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -117,7 +109,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tomorrow"
-        android:textColor="#3F51B5"
         app:layout_constraintBottom_toTopOf="@+id/ten_days_button"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -126,7 +117,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/_10_days"
-        android:textColor="#3F51B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
