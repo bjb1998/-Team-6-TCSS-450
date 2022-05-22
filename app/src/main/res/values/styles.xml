@@ -9,6 +9,12 @@
         <item name="colorPrimaryDark">@color/secondaryDarkColor</item>
         <item name="colorAccent">@color/red</item>
         <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">@color/red</item>
+        <item name="colorOnPrimarySurface">@color/red</item>
+        <item name="colorOnSecondary">@color/red</item>
+        <item name="colorOnError">@color/red</item>
+        <item name="colorOnSurface">@color/red</item>
+        <item name="colorOnBackground">@color/red</item>
 
     </style>
 

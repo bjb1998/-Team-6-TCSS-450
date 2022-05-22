@@ -65,6 +65,7 @@ public class ContactsSearchFragment extends Fragment {
 
         String currentEmail = model.getEmail();
         mContactsSearchViewModel.setCurrentEmail(currentEmail);
+        mContactsSearchViewModel.setmStatus("");
 
         binding.buttonSearch.setOnClickListener(this::search);
         mContactsSearchViewModel.addResponseObserver(getViewLifecycleOwner(),

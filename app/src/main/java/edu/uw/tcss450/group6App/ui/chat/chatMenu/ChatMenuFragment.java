@@ -58,6 +58,8 @@ public class ChatMenuFragment extends Fragment {
 
         mChatMenuViewModel.setCurrentEmail(model.getEmail());
 
+        mChatMenuViewModel.setmStatus("");
+
         //Let the user know whats going on with a Snackbar
         final Observer<String> errorObserver = newName -> {
             if(!newName.equals(""))

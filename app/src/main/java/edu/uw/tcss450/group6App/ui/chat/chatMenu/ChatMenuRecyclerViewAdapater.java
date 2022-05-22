@@ -58,6 +58,8 @@ public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuR
         });
         holder.binding.buttonDelete.setOnClickListener(button -> {
             holder.currentChatModel.deleteChat(holder.mChat.getChatId());
+            mChats.remove(position);
+            this.notifyDataSetChanged();
         });
     }
 

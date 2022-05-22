@@ -42,6 +42,7 @@ public class ContactsSearchViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<String> getStatus(){return mStatus;}
+    public void setmStatus(String s){mStatus.setValue(s);}
 
     public void setCurrentEmail(String email){
         currentEmail = email;
@@ -93,14 +94,16 @@ public class ContactsSearchViewModel extends AndroidViewModel {
         try {
             JSONArray messages = response.getJSONObject("message").getJSONArray("rows");
             for(int i = 0; i < messages.length(); i++) {
-                JSONObject message = messages.getJSONObject(i);
-                ContactInfo cContact = new ContactInfo(
-                        message.getString("firstname"),
-                        message.getString("lastname"),
-                        message.getString("username"),
-                        message.getString("email")
-                );
-                list.add(cContact);
+                JSONObject message = messages.getJSONObject(i); //Don't the user search themselves
+                if(!message.getString("email").equals(currentEmail)) {
+                    ContactInfo cContact = new ContactInfo(
+                            message.getString("firstname"),
+                            message.getString("lastname"),
+                            message.getString("username"),
+                            message.getString("email")
+                    );
+                    list.add(cContact);
+                }
             }
             //inform observers of the change (setValue)
             return list;

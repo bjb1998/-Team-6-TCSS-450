@@ -28,8 +28,6 @@ public class ChatMenuViewModel extends AndroidViewModel {
     private String currentEmail;
     private MutableLiveData<String> mStatus;
 
-    public MutableLiveData<String> getmStatus(){ return mStatus;}
-
     public ChatMenuViewModel(@NonNull Application application) {
         super(application);
         mChats = new MutableLiveData<>();
@@ -37,6 +35,9 @@ public class ChatMenuViewModel extends AndroidViewModel {
         mChats.setValue(new JSONObject());
         mStatus.setValue("");
     }
+
+    public MutableLiveData<String> getmStatus(){ return mStatus;}
+    public void setmStatus(String s){mStatus.setValue(s);}
 
     public void setCurrentEmail(String email){
         currentEmail = email;

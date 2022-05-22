@@ -48,9 +48,12 @@ class ContactsVerifiedRecyclerViewAdapter extends RecyclerView.Adapter<ContactsV
         holder.binding.buttonChat.setOnClickListener(button ->
                 viewModel.createChat(holder.mContact.getEmail())
         );
-        holder.binding.buttonRemove.setOnClickListener(button ->
-                holder.viewModel.removeContact(holder.mContact.getEmail())
-        );
+        holder.binding.buttonRemove.setOnClickListener(button -> {
+            holder.viewModel.removeContact(holder.mContact.getEmail());
+            mUsers.remove(position);
+            this.notifyDataSetChanged();
+
+        });
     }
 
     @Override
