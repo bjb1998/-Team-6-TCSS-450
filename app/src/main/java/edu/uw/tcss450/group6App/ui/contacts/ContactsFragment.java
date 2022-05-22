@@ -58,6 +58,8 @@ public class ContactsFragment extends Fragment {
 
         mContactsViewModel.setCurrentEmail(model.getEmail());
 
+        mContactsViewModel.setmStatus("");
+
         binding.buttonNewContact.setOnClickListener(button ->
                 Navigation.findNavController(getView()).navigate(
                         ContactsFragmentDirections.actionNavigationContactsToNavigationContactsSearch()

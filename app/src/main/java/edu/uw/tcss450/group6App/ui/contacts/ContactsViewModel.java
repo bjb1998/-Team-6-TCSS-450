@@ -30,8 +30,6 @@ public class ContactsViewModel extends AndroidViewModel {
     private String currentEmail;
     private MutableLiveData<String> mStatus;
 
-    public MutableLiveData<String> getmStatus(){ return mStatus;}
-
     public ContactsViewModel(@NonNull Application application) {
         super(application);
         mUsers = new MutableLiveData<>();
@@ -39,6 +37,10 @@ public class ContactsViewModel extends AndroidViewModel {
         mUsers.setValue(new JSONObject());
         mStatus.setValue("");
     }
+
+    public MutableLiveData<String> getmStatus(){ return mStatus;}
+
+    public void setmStatus(String s){mStatus.setValue(s);}
 
     public void setCurrentEmail(String email){
         currentEmail = email;
