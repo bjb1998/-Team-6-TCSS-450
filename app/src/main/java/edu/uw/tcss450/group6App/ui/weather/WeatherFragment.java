@@ -1,9 +1,14 @@
 package edu.uw.tcss450.group6App.ui.weather;
 
+import android.graphics.drawable.AnimatedImageDrawable;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.graphics.drawable.IconKt;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.Objects;
 
+import edu.uw.tcss450.group6App.MainActivity;
 import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
 import edu.uw.tcss450.group6App.model.LocationViewModel;
 import edu.uw.tcss450.group6App.model.WeatherViewModel;
@@ -90,6 +97,7 @@ public class WeatherFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -130,8 +138,12 @@ public class WeatherFragment extends Fragment {
                 local.append(obj.getString("city_name") + ", " + obj.getString("state_code"));
 
                 // weather
+                final JSONObject w = obj.getJSONObject("weather");
                 final StringBuilder weather = new StringBuilder();
-                weather.append(obj.getJSONObject("weather").getString("description"));
+                weather.append(w.getString("description"));
+
+                // icon TODO: implement
+
 
                 // temp
                 final StringBuilder temp = new StringBuilder();
