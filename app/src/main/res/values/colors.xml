@@ -11,20 +11,14 @@
     <color name="red_dark">#9c0000</color>
     <color name="red_light">#ff5131</color>
     <color name="black">#000000</color>
-    <color name="purple_200">#0F9D58</color>
-    <color name="purple_500">#0F9D58</color>
-    <color name="purple_700">#0F9D58</color>
-    <color name="teal_200">#0F9D58</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="white">#FFFFFFFF</color>
 
-    <color name="primaryColor">#4527a0</color>
-    <color name="primaryLightColor">#7953d2</color>
-    <color name="primaryDarkColor">#000070</color>
-    <color name="secondaryColor">#b7a57a</color>
-    <color name="secondaryLightColor">#ead6a9</color>
-    <color name="secondaryDarkColor">#86764e</color>
-    <color name="primaryTextColor">#ffffff</color>
+    <color name="primaryColor">#fafafa</color>
+    <color name="primaryLightColor">#ffffff</color>
+    <color name="primaryDarkColor">#c7c7c7</color>
+    <color name="secondaryColor">#ff1744</color>
+    <color name="secondaryLightColor">#ff616f</color>
+    <color name="secondaryDarkColor">#c4001d</color>
+    <color name="primaryTextColor">#212121</color>
     <color name="secondaryTextColor">#000000</color>
 
     <color name="secondaryTextColorFade">#222222</color>
