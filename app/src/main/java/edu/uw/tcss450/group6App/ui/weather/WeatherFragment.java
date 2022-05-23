@@ -1,5 +1,8 @@
 package edu.uw.tcss450.group6App.ui.weather;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimatedImageDrawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
@@ -25,6 +28,7 @@ import org.json.JSONObject;
 import java.util.Objects;
 
 import edu.uw.tcss450.group6App.MainActivity;
+import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
 import edu.uw.tcss450.group6App.model.LocationViewModel;
 import edu.uw.tcss450.group6App.model.WeatherViewModel;
@@ -143,6 +147,10 @@ public class WeatherFragment extends Fragment {
                 weather.append(w.getString("description"));
 
                 // icon TODO: implement
+                //final Bitmap bImage = BitmapFactory.decodeResource(.getLifecycle(), R.mipmap.ic_launcher_round);
+                binding.weatherIcon.setImageResource(R.mipmap.ic_clear_sky);
+                //binding.weatherIcon.setImageBitmap(bImage);
+                //binding.weatherIcon.setVisibility(View.VISIBLE);
 
 
                 // temp
