@@ -1,6 +1,7 @@
 package edu.uw.tcss450.group6App.ui.chat.chatMenu;
 
 import static edu.uw.tcss450.group6App.MainActivity.currentUserInfo;
+import static edu.uw.tcss450.group6App.ui.chat.chatMenu.ChatMenuFragment.mChatMenuViewModel;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
@@ -24,6 +25,7 @@ public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuR
 
     private final List<ChatInfo> mChats;
     private UserInfoViewModel viewModel;
+    private ChatMenuViewModel chatModel;
 
     public ChatMenuRecyclerViewAdapater(List<ChatInfo> chats) {
         this.mChats = chats;
@@ -34,14 +36,15 @@ public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuR
     public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ChatViewHolder(LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.fragment_chat_card, parent, false), viewModel);
+                .inflate(R.layout.fragment_chat_card, parent, false), viewModel, chatModel);
     }
 
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-        if(viewModel==null){
+        if(viewModel==null || chatModel == null){
             viewModel= currentUserInfo;
+            chatModel = mChatMenuViewModel;
         }
     }
 
@@ -52,6 +55,11 @@ public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuR
             viewModel.setCurrentChatId(holder.mChat.getChatId());
             Navigation.findNavController(holder.mView).navigate(
                     ChatMenuFragmentDirections.actionNavigationChatMenuToNavigationChat());
+        });
+        holder.binding.buttonDelete.setOnClickListener(button -> {
+            holder.currentChatModel.deleteChat(holder.mChat.getChatId());
+            mChats.remove(position);
+            this.notifyDataSetChanged();
         });
     }
 
@@ -65,12 +73,14 @@ public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuR
         private FragmentChatCardBinding binding;
         private ChatInfo mChat;
         private UserInfoViewModel viewModel;
+        private ChatMenuViewModel currentChatModel;
 
-        public ChatViewHolder(@NonNull View view, UserInfoViewModel model) {
+        public ChatViewHolder(@NonNull View view, UserInfoViewModel model, ChatMenuViewModel chatModel) {
             super(view);
             mView = view;
             binding = FragmentChatCardBinding.bind(view);
             viewModel = model;
+            currentChatModel = chatModel;
         }
 
         @SuppressLint("SetTextI18n")

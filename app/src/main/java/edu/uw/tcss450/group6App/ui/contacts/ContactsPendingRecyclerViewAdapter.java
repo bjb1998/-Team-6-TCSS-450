@@ -45,12 +45,16 @@ class ContactsPendingRecyclerViewAdapter extends RecyclerView.Adapter<ContactsPe
     @Override
     public void onBindViewHolder(@NonNull ContactsPendingRecyclerViewAdapter.ContactViewHolder holder, int position) {
         holder.setContact(mUsers.get(position));
-        holder.binding.buttonAccept.setOnClickListener(button ->
-                holder.viewModel.acceptContact(holder.mContact.getEmail())
-        );
-        holder.binding.buttonDecline.setOnClickListener(button ->
-                holder.viewModel.removeContact(holder.mContact.getEmail())
-        );
+        holder.binding.buttonAccept.setOnClickListener(button -> {
+            holder.viewModel.acceptContact(holder.mContact.getEmail());
+            mUsers.remove(position);
+            this.notifyDataSetChanged();
+        });
+        holder.binding.buttonDecline.setOnClickListener(button -> {
+            holder.viewModel.removeContact(holder.mContact.getEmail());
+            mUsers.remove(position);
+            this.notifyDataSetChanged();
+        });
     }
 
     @Override

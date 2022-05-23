@@ -5,12 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +29,7 @@ import edu.uw.tcss450.group6App.model.UserInfoViewModel;
 public class ChatMenuFragment extends Fragment {
 
     private FragmentChatMenuBinding binding;
-    private ChatMenuViewModel mChatMenuViewModel;
+    public static ChatMenuViewModel mChatMenuViewModel;
 
     public ChatMenuFragment() {
         // Required empty public constructor
@@ -54,6 +57,18 @@ public class ChatMenuFragment extends Fragment {
                 .get(UserInfoViewModel.class);
 
         mChatMenuViewModel.setCurrentEmail(model.getEmail());
+
+        mChatMenuViewModel.setmStatus("");
+
+        //Let the user know whats going on with a Snackbar
+        final Observer<String> errorObserver = newName -> {
+            if(!newName.equals(""))
+                Snackbar.make(view,
+                        mChatMenuViewModel.getmStatus().getValue(),
+                        Snackbar.LENGTH_SHORT).show();
+        };
+
+        mChatMenuViewModel.getmStatus().observe(getViewLifecycleOwner(), errorObserver);
 
         binding.recyclerChats.setAdapter(
                 new ChatMenuRecyclerViewAdapater(
