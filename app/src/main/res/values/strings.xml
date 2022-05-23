@@ -65,5 +65,6 @@
     <string name="keys_shared_prefs">My Auth App Shared Prefs</string>
     <string name="keys_prefs_jwt">Sharded Prefs JWT</string>
     <string name="action_sign_out">Sign Out</string>
+    <string name="represents_weather_description">Represents weather description</string>
 
 </resources>
