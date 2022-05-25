@@ -1,9 +1,11 @@
 package edu.uw.tcss450.group6App.ui.chat.chatMenu;
 
 import static edu.uw.tcss450.group6App.MainActivity.currentUserInfo;
+import static edu.uw.tcss450.group6App.model.NewMessageCountViewModel.chatIdMap;
 import static edu.uw.tcss450.group6App.ui.chat.chatMenu.ChatMenuFragment.mChatMenuViewModel;
 
 import android.annotation.SuppressLint;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,12 +57,21 @@ public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuR
             viewModel.setCurrentChatId(holder.mChat.getChatId());
             Navigation.findNavController(holder.mView).navigate(
                     ChatMenuFragmentDirections.actionNavigationChatMenuToNavigationChat());
+            holder.binding.textChatName.setTypeface(null, Typeface.NORMAL);
+            this.notifyDataSetChanged();
         });
         holder.binding.buttonDelete.setOnClickListener(button -> {
             holder.currentChatModel.deleteChat(holder.mChat.getChatId());
             mChats.remove(position);
             this.notifyDataSetChanged();
         });
+
+        //embolden text if there are unread messages
+        if(chatIdMap.containsKey(holder.mChat.getChatId())){
+            holder.binding.textChatName.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
+        }else{
+
+        }
     }
 
     @Override
@@ -87,6 +98,13 @@ public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuR
         void setChat(final ChatInfo chat) {
             mChat = chat;
             binding.textChatName.setText(mChat.getName());
+
+            //embolden text if there are unread messages
+            if(chatIdMap.containsKey(mChat.getChatId())){
+                binding.textChatName.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
+            }else{
+                binding.textChatName.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+            }
         }
     }
 }
