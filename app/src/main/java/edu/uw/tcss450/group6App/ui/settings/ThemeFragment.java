@@ -31,7 +31,6 @@ public class ThemeFragment extends Fragment {
 
     private FragmentThemesBinding binding;
     private UserInfoViewModel viewModel;
-    Button button_red_theme, button_dark_theme;
     private RadioGroup radioGroup;
     private TextView themeTV;
 
