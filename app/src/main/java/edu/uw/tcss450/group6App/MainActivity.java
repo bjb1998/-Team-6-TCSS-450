@@ -2,7 +2,6 @@ package edu.uw.tcss450.group6App;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -33,14 +32,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import edu.uw.tcss450.group6App.ui.chat.ChatFragment;
 import edu.uw.tcss450.group6App.ui.chat.ChatMessage;
 import edu.uw.tcss450.group6App.ui.chat.ChatViewModel;
 import edu.uw.tcss450.group6App.databinding.ActivityMainBinding;
 import edu.uw.tcss450.group6App.model.NewMessageCountViewModel;
 import edu.uw.tcss450.group6App.model.UserInfoViewModel;
 import edu.uw.tcss450.group6App.services.PushReceiver;
-import edu.uw.tcss450.group6App.ui.settings.SettingsFragment;
 import edu.uw.tcss450.group6App.model.LocationViewModel;
 
 /**
@@ -107,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 //When the user navigates to the chats page, reset the new message count.
                 //This will need some extra logic for your project as it should have
                 //multiple chat rooms.
-                mNewMessageModel.reset();
+                mNewMessageModel.decrease(currentUserInfo.getCurrentChatId());
             }
         });
 
@@ -267,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 //If the user is not on the chat screen, update the
                 // NewMessageCountView Model
                 if (nd.getId() != R.id.navigation_chat) {
-                    mNewMessageModel.increment();
+                    mNewMessageModel.increment(intent.getIntExtra("chatid", -1));
                 }
                 //Inform the view model holding chatroom messages of the new
                 //message.
