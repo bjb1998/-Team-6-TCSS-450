@@ -1,7 +1,9 @@
 package edu.uw.tcss450.group6App.ui.settings;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -44,19 +46,16 @@ public class ThemeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
         binding = FragmentThemesBinding.inflate(inflater);
         ViewModelProvider provider = new ViewModelProvider(getActivity());
         viewModel = provider.get(UserInfoViewModel.class);
 
         radioGroup = binding.getRoot().findViewById(R.id.idRGgroup);
         themeTV = binding.getRoot().findViewById(R.id.idtvTheme);
-//         button_red_theme = (Button) v.findViewById(R.id.idRBLight);
 
+        SharedPreferences pref = getActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
 
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-                Log.d("THEME", checkedId + "");
                 // on radio button check change
                 switch (checkedId) {
                     case R.id.button_theme_light:
@@ -66,7 +65,7 @@ public class ThemeFragment extends Fragment {
                         // on below line we are changing the theme to light mode.
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                         group.clearCheck();
-                        Log.d("THEME", "Hello Light!");
+                        pref.edit().putBoolean("isNight", false).apply();
                         break;
                     case R.id.button_theme_dark:
                         // this method is called when dark radio button is selected
@@ -75,7 +74,7 @@ public class ThemeFragment extends Fragment {
                         // on below line we are changing the theme to dark mode.
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                         group.clearCheck();
-                        Log.d("THEME", "Hello Dark!");
+                        pref.edit().putBoolean("isNight", true).apply();
                         break;
                 }
 
