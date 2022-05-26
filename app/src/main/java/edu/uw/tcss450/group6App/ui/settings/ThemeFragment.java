@@ -1,27 +1,19 @@
 package edu.uw.tcss450.group6App.ui.settings;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentThemesBinding;
@@ -33,36 +25,34 @@ import edu.uw.tcss450.group6App.model.UserInfoViewModel;
  */
 public class ThemeFragment extends Fragment {
 
-    private FragmentThemesBinding binding;
     private UserInfoViewModel viewModel;
     SharedPreferences mPreferences;
-    private RadioGroup radioGroup;
-    private TextView themeTV;
+//    private RadioGroup radioGroup;
+//    private TextView themeTV;
     String mThemeName;
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        mPreferences = getActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
+        mPreferences = requireActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
         mThemeName = mPreferences.getString("ThemeName", "Default");
         super.onCreate(savedInstanceState);
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
 
-        binding = FragmentThemesBinding.inflate(inflater);
-        ViewModelProvider provider = new ViewModelProvider(getActivity());
+        edu.uw.tcss450.group6App.databinding.FragmentThemesBinding binding = FragmentThemesBinding.inflate(inflater);
+        ViewModelProvider provider = new ViewModelProvider(requireActivity());
         viewModel = provider.get(UserInfoViewModel.class);
 
-        radioGroup = binding.getRoot().findViewById(R.id.idRGgroup);
-        themeTV = binding.getRoot().findViewById(R.id.idtvTheme);
-//         button_red_theme = (Button) v.findViewById(R.id.idRBLight);
+//        radioGroup = binding.getRoot().findViewById(R.id.idRGgroup);
+//        themeTV = binding.getRoot().findViewById(R.id.idtvTheme);
 
         binding.buttonThemeDark.setOnClickListener(v -> {
-            SharedPreferences preferences = getActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
+            SharedPreferences preferences = requireActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("themeChanged", true);
             editor.apply();
@@ -77,7 +67,7 @@ public class ThemeFragment extends Fragment {
         });
 
         binding.buttonThemeLight.setOnClickListener(v -> {
-            SharedPreferences preferences = getActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
+            SharedPreferences preferences = requireActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean("themeChanged", true);
             editor.apply();
@@ -97,26 +87,25 @@ public class ThemeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-//        System.out.println("Theme:" + mThemeName);
         if (mThemeName.equalsIgnoreCase("DarkTheme")) {
             Log.d("THEME", "Night mode!");
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            getActivity().setTheme(R.style.DarkTheme);
+            requireActivity().setTheme(R.style.DarkTheme);
         } else  {
             System.out.println("Day mode on");
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            getActivity().setTheme(R.style.AppTheme);
+            requireActivity().setTheme(R.style.AppTheme);
         }
 
         super.onViewCreated(view, savedInstanceState);
 
 
-        viewModel = new ViewModelProvider(getActivity())
+        viewModel = new ViewModelProvider(requireActivity())
                 .get(UserInfoViewModel.class);
     }
     public void setTheme(String name) {
         // Create preference to store theme name
-        SharedPreferences preferences = getActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
+        SharedPreferences preferences = requireActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("ThemeName", name);
         editor.apply();
@@ -124,7 +113,7 @@ public class ThemeFragment extends Fragment {
         if(mPreferences.getBoolean("themeChanged", false)){
 //            System.out.println("theme changed statement in if statement");
             mPreferences.edit().remove("themeChanged").apply();
-            getActivity().recreate();
+            requireActivity().recreate();
         }
 
 
@@ -134,8 +123,6 @@ public class ThemeFragment extends Fragment {
 
 
         mThemeName = mPreferences.getString("ThemeName", "Default");
-
-//        }
 
         super.onResume();
     }
