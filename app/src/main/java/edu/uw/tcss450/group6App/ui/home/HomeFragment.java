@@ -12,23 +12,40 @@ import androidx.lifecycle.ViewModelProvider;
 
 import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentHomeBinding;
+import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
+import edu.uw.tcss450.group6App.model.LocationViewModel;
 import edu.uw.tcss450.group6App.model.UserInfoViewModel;
+import edu.uw.tcss450.group6App.model.WeatherViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
 
+    private WeatherViewModel mWeatherModel;
+    private LocationViewModel mLocationModel;
+
+    private FragmentHomeBinding binding;
+
     public HomeFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        mWeatherModel = new ViewModelProvider(requireActivity())
+                .get(WeatherViewModel.class);
+        mLocationModel = new ViewModelProvider(requireActivity())
+                .get(LocationViewModel.class);
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        binding = FragmentHomeBinding.inflate(inflater);
+        return binding.getRoot();
     }
 
     @Override
