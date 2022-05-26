@@ -170,7 +170,8 @@ public class WeatherFragment extends Fragment {
                 e.printStackTrace();
             }
         });
-        //binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGet());
+        mWeatherModel.connectGet();
+        binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGet());
 
     }
 
