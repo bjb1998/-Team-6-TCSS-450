@@ -1,33 +1,24 @@
 package edu.uw.tcss450.group6App.ui.weather;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.AnimatedImageDrawable;
-import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.core.graphics.drawable.IconKt;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
+import com.android.volley.Request;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Objects;
-
-import edu.uw.tcss450.group6App.MainActivity;
 import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
 import edu.uw.tcss450.group6App.model.LocationViewModel;
@@ -115,7 +106,7 @@ public class WeatherFragment extends Fragment {
 
         mWeatherModel.setLocationModel(mLocationModel);
 
-        binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGet());
+        binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGetDaily());
 
         // pressing a button code
         mWeatherModel.addResponseObserver(getViewLifecycleOwner(), result ->
@@ -146,11 +137,7 @@ public class WeatherFragment extends Fragment {
                 final StringBuilder weather = new StringBuilder();
                 weather.append(w.getString("description"));
 
-                // icon TODO: implement
-                //final Bitmap bImage = BitmapFactory.decodeResource(.getLifecycle(), R.mipmap.ic_launcher_round);
-                binding.weatherIcon.setImageResource(R.mipmap.ic_clear_sky);
-                //binding.weatherIcon.setImageBitmap(bImage);
-                //binding.weatherIcon.setVisibility(View.VISIBLE);
+                // icon TODO: implement dynamic set of icon
 
 
                 // temp
@@ -166,12 +153,32 @@ public class WeatherFragment extends Fragment {
                 binding.temperature.setText(temp.toString());
                 binding.location.setText(local.toString());
                 binding.description.setText(weather.toString());
+                binding.weatherIcon.setImageResource(R.mipmap.ic_clear_sky);
             } catch (final JSONException e) {
                 e.printStackTrace();
             }
         });
-        mWeatherModel.connectGet();
-        binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGet());
+
+        mWeatherModel.connectGetDaily();
+        binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGetDaily());
+
+        // TODO 10 day forecast
+        binding.tenDaysButton.setOnClickListener(button -> {
+            clearText();
+            Request<JSONObject> respond = mWeatherModel.connectGet10Day();
+
+            binding.sunset.setText("I'm sunset");
+
+        });
+    }
+
+    private void clearText() {
+        binding.time.setText("");
+        binding.sunrise.setText("");
+        binding.sunset.setText("");
+        binding.temperature.setText("");
+        binding.location.setText("");
+        binding.description.setText("");
 
     }
 
