@@ -1,6 +1,7 @@
 package edu.uw.tcss450.group6App;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -135,6 +136,8 @@ public class MainActivity extends AppCompatActivity {
             //The user has already allowed the use of Locations. Get the current location.
             requestLocation();
         }
+
+        setAppTheme();
     }
 
     @Override
@@ -308,8 +311,15 @@ public class MainActivity extends AppCompatActivity {
         prefs.edit().remove(getString(R.string.keys_prefs_jwt)).apply();
         //End the app completely
         finishAndRemoveTask();
+    }
 
-
+    private void setAppTheme(){
+        boolean isNightMode = getSharedPreferences("Theme", Context.MODE_PRIVATE).getBoolean("isNight", true);
+        if (isNightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
 
