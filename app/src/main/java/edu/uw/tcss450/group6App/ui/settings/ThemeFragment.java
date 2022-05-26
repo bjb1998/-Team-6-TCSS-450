@@ -21,6 +21,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentThemesBinding;
 import edu.uw.tcss450.group6App.model.UserInfoViewModel;
@@ -54,6 +56,7 @@ public class ThemeFragment extends Fragment {
         themeTV = binding.getRoot().findViewById(R.id.idtvTheme);
 
         SharedPreferences pref = getActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
+        boolean isNightMode = pref.getBoolean("isNight", true);
 
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
                 // on radio button check change
@@ -62,6 +65,8 @@ public class ThemeFragment extends Fragment {
                         // on below line we are checking the radio button with id.
                         // on below line we are setting the text to text view as light mode.
                         themeTV.setText("Light Theme");
+                        if(isNightMode)
+                            Toast.makeText(getActivity(), "Already in Light Mode!", Toast.LENGTH_SHORT).show();
                         // on below line we are changing the theme to light mode.
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                         group.clearCheck();
@@ -71,6 +76,8 @@ public class ThemeFragment extends Fragment {
                         // this method is called when dark radio button is selected
                         // on below line we are setting dark theme text to our text view.
                         themeTV.setText("Dark Theme");
+                        if(isNightMode)
+                            Toast.makeText(getActivity(), "Already in Dark Mode!", Toast.LENGTH_SHORT).show();
                         // on below line we are changing the theme to dark mode.
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                         group.clearCheck();
