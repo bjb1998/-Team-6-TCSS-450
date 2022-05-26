@@ -1,0 +1,91 @@
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n\r\n    <!-- This is a MaterialDesignTheme. Required when using Material Components -->\r\n\r\n        <!-- Base application theme. -->\r\n    <style name=\"AppTheme\" parent=\"Theme.AppCompat.DayNight.DarkActionBar\">\r\n        <!-- Primary brand color. -->\r\n        <item name=\"colorPrimary\">@color/secondaryColor</item>\r\n        <item name=\"colorPrimaryDark\">@color/secondaryDarkColor</item>\r\n        <item name=\"colorAccent\">@color/red</item>\r\n        <item name=\"colorPrimaryVariant\">@color/primaryDarkColor</item>\r\n        <item name=\"colorOnPrimary\">@color/red</item>\r\n        <item name=\"colorOnPrimarySurface\">@color/red</item>\r\n        <item name=\"colorOnSecondary\">@color/red</item>\r\n        <item name=\"colorOnError\">@color/red</item>\r\n        <item name=\"colorOnSurface\">@color/red</item>\r\n        <item name=\"colorOnBackground\">@color/red</item>\r\n\r\n    </style>\r\n\r\n    <style name=\"Widget.App.Button.OutlinedButton.IconOnly\" parent=\"Widget.MaterialComponents.Button.OutlinedButton\">\r\n        <item name=\"iconPadding\">0dp</item>\r\n        <item name=\"android:insetTop\">0dp</item>\r\n        <item name=\"android:insetBottom\">0dp</item>\r\n        <item name=\"android:paddingLeft\">12dp</item>\r\n        <item name=\"android:paddingRight\">12dp</item>\r\n        <item name=\"android:minWidth\">48dp</item>\r\n        <item name=\"android:minHeight\">48dp</item>\r\n    </style>\r\n\r\n    <!--Dark Theme  -->\r\n    <!--    <style name=\"BlackTheme\">-->\r\n    <!--        <item name=\"android:background\">#000000</item>-->\r\n\r\n    <!--        <item name=\"android:textColor\">#FFFFFF</item>-->\r\n    <!--    </style>-->\r\n\r\n    <!--    <style name=\"RedTheme\">-->\r\n    <!--        <item name=\"android:background\">#d60000</item>-->\r\n    <!--        <item name=\"android:textColor\">#000000</item>-->\r\n    <!--    </style>-->\r\n\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/styles.xml b/app/src/main/res/values/styles.xml
+--- a/app/src/main/res/values/styles.xml	(revision 50aedb8c5ca2db60bb78c70721208690a58b657f)
++++ b/app/src/main/res/values/styles.xml	(date 1653338202000)
+@@ -2,20 +2,30 @@
+ 
+     <!-- This is a MaterialDesignTheme. Required when using Material Components -->
+ 
+-        <!-- Base application theme. -->
+-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
++        <!-- Light theme. -->
++    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+         <!-- Primary brand color. -->
+         <item name="colorPrimary">@color/secondaryColor</item>
+         <item name="colorPrimaryDark">@color/secondaryDarkColor</item>
+         <item name="colorAccent">@color/red</item>
+-        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+-        <item name="colorOnPrimary">@color/red</item>
+-        <item name="colorOnPrimarySurface">@color/red</item>
+-        <item name="colorOnSecondary">@color/red</item>
+-        <item name="colorOnError">@color/red</item>
+-        <item name="colorOnSurface">@color/red</item>
+-        <item name="colorOnBackground">@color/red</item>
+-
++        <item name="backgroundColor">@color/primaryDarkColor</item>
++        <item name="cardBackgroundColor">@color/primaryDarkColor</item>
++        <item name="textColor">@color/black</item>
++        <item name="tintColor">@color/primaryDarkColor</item>
++        <item name="buttonColor">@color/royalBlue</item>
++    </style>
++
++    <!-- Dark theme. -->
++    <style name="darkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
++        <!-- Primary brand color. -->
++        <item name="colorPrimary">#001a33</item>
++        <item name="colorPrimaryDark">@color/black</item>
++        <item name="colorAccent">@color/red</item>
++        <item name="backgroundColor">#001a33</item>
++        <item name="cardBackgroundColor">#424242</item>
++        <item name="textColor">@color/primaryColor</item>
++        <item name="tintColor">@color/primaryDarkColor</item>
++        <item name="buttonColor">@color/royalBlue</item>
+     </style>
+ 
+     <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton">
+@@ -28,16 +38,6 @@
+         <item name="android:minHeight">48dp</item>
+     </style>
+ 
+-    <!--Dark Theme  -->
+-    <!--    <style name="BlackTheme">-->
+-    <!--        <item name="android:background">#000000</item>-->
+ 
+-    <!--        <item name="android:textColor">#FFFFFF</item>-->
+-    <!--    </style>-->
+-
+-    <!--    <style name="RedTheme">-->
+-    <!--        <item name="android:background">#d60000</item>-->
+-    <!--        <item name="android:textColor">#000000</item>-->
+-    <!--    </style>-->
+ 
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/values/attrs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/attrs.xml b/app/src/main/res/values/attrs.xml
+new file mode 100644
+--- /dev/null	(date 1653337404000)
++++ b/app/src/main/res/values/attrs.xml	(date 1653337404000)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--source https://www.youtube.com/watch?v=-qsHE3TpJqw-->
++<resources>
++    <declare-styleable name="ds">
++        <attr name="backgroundColor" format="color"/>
++        <attr name="cardBackgroundColor" format="color"/>
++        <attr name="textColor" format="color"/>
++        <attr name="tintColor" format="color"/>
++        <attr name="buttonColor" format="color"/>
++    </declare-styleable>
++</resources>
++
