@@ -314,12 +314,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setAppTheme(){
-        boolean isNightMode = getSharedPreferences("Theme", Context.MODE_PRIVATE).getBoolean("isNight", true);
-        if (isNightMode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
+        if(getSharedPreferences("Theme", Context.MODE_PRIVATE).contains("isNight")) {
+            boolean isNightMode = getSharedPreferences("Theme", Context.MODE_PRIVATE).getBoolean("isNight", true);
+            if (isNightMode) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+        }else
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
     }
 
 
