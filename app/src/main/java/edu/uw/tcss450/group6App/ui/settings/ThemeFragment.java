@@ -59,6 +59,7 @@ public class ThemeFragment extends Fragment {
         themeTV = binding.getRoot().findViewById(R.id.idtvTheme);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         binding.buttonThemeDark.setOnClickListener(v -> {
             SharedPreferences preferences = getActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
@@ -86,6 +87,8 @@ public class ThemeFragment extends Fragment {
                 Log.d("THEME", "Day Mode!");
                 setTheme("Default");
 =======
+=======
+>>>>>>> Stashed changes
         SharedPreferences pref = getActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
 
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
