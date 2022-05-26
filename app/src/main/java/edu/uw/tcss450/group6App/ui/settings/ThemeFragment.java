@@ -65,7 +65,7 @@ public class ThemeFragment extends Fragment {
                         // on below line we are checking the radio button with id.
                         // on below line we are setting the text to text view as light mode.
                         themeTV.setText("Light Theme");
-                        if(isNightMode)
+                        if(!isNightMode)
                             Toast.makeText(getActivity(), "Already in Light Mode!", Toast.LENGTH_SHORT).show();
                         // on below line we are changing the theme to light mode.
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
