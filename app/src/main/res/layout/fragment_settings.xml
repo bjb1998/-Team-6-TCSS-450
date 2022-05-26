@@ -7,16 +7,27 @@
     tools:context=".ui.settings.SettingsFragment">
 
 
-
     <Button
         android:id="@+id/button_settings_themes"
-        android:layout_width="match_parent"
+        android:layout_width="390dp"
         android:layout_height="65dp"
-        android:layout_marginTop="3dp"
         android:text="@string/action_settings_themes"
+        app:layout_constraintBottom_toBottomOf="@+id/button_logout_setting"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049" />
 
-
+    <Button
+        android:id="@+id/button_logout_setting"
+        android:layout_width="390dp"
+        android:layout_height="wrap_content"
+        android:text="@string/log_out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
 </androidx.constraintlayout.widget.ConstraintLayout>

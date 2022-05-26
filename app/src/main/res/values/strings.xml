@@ -12,12 +12,16 @@
     <string name="action_search_user">Search</string>
     <string name="display_header_title">Phish Shows Welcomes:</string>
     <string name="image_description_logo">The Phish Logo</string>
+
+    <!-- Settings -->
     <string name="action_next">Next</string>
     <string name="action_settings">Settings</string>
     <string name="action_settings_themes">Themes</string>
     <string name="action_settings_themes_light">Light</string>
     <string name="action_settings_themes_dark">Dark</string>
     <string name="hint_settings_themes">System Default Theme</string>
+    <string name="log_out">Log out</string>
+
 
 
 
