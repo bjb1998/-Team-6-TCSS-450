@@ -56,7 +56,7 @@ public class WeatherViewModel extends AndroidViewModel {
     }
 
 
-    public void connectGet() {
+    public void connectGetDaily() {
         final Location location = mLocationModel.getCurrentLocation();
         String url = "https://api.weatherbit.io/v2.0/current?" + "lat=" + location.getLatitude() +
                 "&lon=" + location.getLongitude() + "&key=" + API_KEY;
@@ -80,6 +80,27 @@ public class WeatherViewModel extends AndroidViewModel {
                 .add(request);
     }
 
+    public Request<JSONObject> connectGet10Day() {
+        final Location location = mLocationModel.getCurrentLocation();
+        final String tacoma = "city=Tacoma,WA";
+        String url = "https://api.weatherbit.io/v2.0/forecast/daily?" + tacoma + "&key=" + API_KEY;
+
+        Request<JSONObject> request = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                this::handleResult,
+                this::handleError);
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10_000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        Volley.newRequestQueue(getApplication().getApplicationContext())
+                .add(request);
+        return request;
+    }
 
 
 
