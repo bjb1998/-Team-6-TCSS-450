@@ -82,8 +82,8 @@ public class WeatherViewModel extends AndroidViewModel {
 
     public Request<JSONObject> connectGet10Day() {
         final Location location = mLocationModel.getCurrentLocation();
-        String url = "https://api.weatherbit.io/v2.0/forecast?" + "lat=" + location.getLongitude() +
-                "&lon=" + location.getLongitude() + "&key=" + API_KEY;
+        final String tacoma = "city=Tacoma,WA";
+        String url = "https://api.weatherbit.io/v2.0/forecast/daily?" + tacoma + "&key=" + API_KEY;
 
         Request<JSONObject> request = new JsonObjectRequest(
                 Request.Method.GET,

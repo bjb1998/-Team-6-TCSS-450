@@ -39,6 +39,11 @@ public class WeatherFragment extends Fragment {
 
     private FragmentWeatherBinding binding;
 
+    /**
+     * Used to determine what method to call.
+     */
+    private int buttonChoice = 0;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -49,7 +54,7 @@ public class WeatherFragment extends Fragment {
     private String mParam2;
 
     /**
-     * Stub empty constructor
+     * Stub constructor
      */
     public WeatherFragment() {}
 
@@ -106,72 +111,39 @@ public class WeatherFragment extends Fragment {
 
         mWeatherModel.setLocationModel(mLocationModel);
 
-        binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGetDaily());
+        binding.todayButton.setOnClickListener(button -> {
+            clearText();
+            buttonChoice = 0;
+            mWeatherModel.connectGetDaily();
+        });
 
         // pressing a button code
         mWeatherModel.addResponseObserver(getViewLifecycleOwner(), result ->
         {
-            // TODO this is how you access the json object data; now split and add to weather display
-            try {
-                final JSONArray arr = result.getJSONArray("data");
-                final JSONObject obj = arr.getJSONObject(0);
-
-                // time
-                final StringBuilder time = new StringBuilder();
-                time.append(obj.getString("ob_time"));
-
-                // sunrise
-                final StringBuilder sunrise = new StringBuilder();
-                sunrise.append("Sunrise: " + obj.getString("sunrise"));
-
-                // sunset
-                final StringBuilder sunset = new StringBuilder();
-                sunset.append("Sunset: " + obj.getString("sunset"));
-
-                // location
-                final StringBuilder local = new StringBuilder();
-                local.append(obj.getString("city_name") + ", " + obj.getString("state_code"));
-
-                // weather
-                final JSONObject w = obj.getJSONObject("weather");
-                final StringBuilder weather = new StringBuilder();
-                weather.append(w.getString("description"));
-
-                // icon TODO: implement dynamic set of icon
-
-
-                // temp
-                final StringBuilder temp = new StringBuilder();
-                double t = obj.getDouble("temp");
-                t = t * 1.8 + 32;
-                final String degree = "" + (char) 176;
-                temp.append("Temp: " + String.format("%.2f", t) + degree +" F");
-
-                binding.time.setText(time.toString());
-                binding.sunrise.setText(sunrise.toString());
-                binding.sunset.setText(sunset.toString());
-                binding.temperature.setText(temp.toString());
-                binding.location.setText(local.toString());
-                binding.description.setText(weather.toString());
-                binding.weatherIcon.setImageResource(R.mipmap.ic_clear_sky);
-            } catch (final JSONException e) {
-                e.printStackTrace();
+            switch (buttonChoice) {
+                case 0:
+                    loadTodayInfo(result);
+                    break;
+                case 1:
+                    loadTenDayInfo(result);
+                    break;
             }
         });
 
         mWeatherModel.connectGetDaily();
-        binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGetDaily());
+        //binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGetDaily());
 
         // TODO 10 day forecast
         binding.tenDaysButton.setOnClickListener(button -> {
             clearText();
-            Request<JSONObject> respond = mWeatherModel.connectGet10Day();
-
-            binding.sunset.setText("I'm sunset");
-
+            buttonChoice = 1;
+            mWeatherModel.connectGet10Day();
         });
     }
 
+    /**
+     * Clears all the TextViews
+     */
     private void clearText() {
         binding.time.setText("");
         binding.sunrise.setText("");
@@ -180,6 +152,67 @@ public class WeatherFragment extends Fragment {
         binding.location.setText("");
         binding.description.setText("");
 
+    }
+
+    /**
+     * Loads the daily weather info into the text views
+     */
+    private void loadTodayInfo(final JSONObject result) {
+        try {
+            final JSONArray arr = result.getJSONArray("data");
+            final JSONObject obj = arr.getJSONObject(0);
+
+            // time
+            final StringBuilder time = new StringBuilder();
+            time.append(obj.getString("ob_time"));
+
+            // sunrise
+            final StringBuilder sunrise = new StringBuilder();
+            sunrise.append("Sunrise: " + obj.getString("sunrise"));
+
+            // sunset
+            final StringBuilder sunset = new StringBuilder();
+            sunset.append("Sunset: " + obj.getString("sunset"));
+
+            // location
+            final StringBuilder local = new StringBuilder();
+            local.append(obj.getString("city_name") + ", " + obj.getString("state_code"));
+
+            // weather
+            final JSONObject w = obj.getJSONObject("weather");
+            final StringBuilder weather = new StringBuilder();
+            weather.append(w.getString("description"));
+
+            // icon TODO: implement dynamic set of icon
+
+
+            // temp
+            final StringBuilder temp = new StringBuilder();
+            double t = obj.getDouble("temp");
+            t = t * 1.8 + 32;
+            final String degree = "" + (char) 176;
+            temp.append("Temp: " + String.format("%.2f", t) + degree +" F");
+
+            binding.time.setText(time.toString());
+            binding.sunrise.setText(sunrise.toString());
+            binding.sunset.setText(sunset.toString());
+            binding.temperature.setText(temp.toString());
+            binding.location.setText(local.toString());
+            binding.description.setText(weather.toString());
+            binding.weatherIcon.setImageResource(R.mipmap.ic_clear_sky);
+        } catch (final JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void loadTenDayInfo(final JSONObject result) {
+        try {
+            final JSONArray arr = result.getJSONArray("data");
+            final JSONObject obj = arr.getJSONObject(0);
+        } catch (final JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 
