@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -210,6 +211,7 @@ public class WeatherFragment extends Fragment {
         try {
             final JSONArray arr = result.getJSONArray("data");
             final JSONObject obj = arr.getJSONObject(0);
+            Log.d("THE WEATHER", obj.toString());
         } catch (final JSONException e) {
             e.printStackTrace();
         }
