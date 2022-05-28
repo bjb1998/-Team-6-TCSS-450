@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment {
         mWeatherModel.setLocationModel(mLocationModel);
 
         setWeather();
-        mWeatherModel.connectGet();
+        mWeatherModel.connectGetDaily();
 
 
     }
