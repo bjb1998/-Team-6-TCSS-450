@@ -114,6 +114,7 @@ public class WeatherFragment extends Fragment {
 
         binding.todayButton.setOnClickListener(button -> {
             clearText();
+            clearTenDayForecastText();
             buttonChoice = 0;
             mWeatherModel.connectGetDaily();
         });
@@ -150,9 +151,38 @@ public class WeatherFragment extends Fragment {
         binding.sunrise.setText("");
         binding.sunset.setText("");
         binding.temperature.setText("");
-        //binding.location.setText("");
         binding.description.setText("");
 
+    }
+
+    private void clearTenDayForecastText() {
+        binding.day1.setText("");
+        binding.description1.setText("");
+        binding.temp1.setText("");
+
+        binding.day2.setText("");
+        binding.description2.setText("");
+        binding.temp2.setText("");
+
+        binding.day3.setText("");
+        binding.description3.setText("");
+        binding.temp3.setText("");
+
+        binding.day4.setText("");
+        binding.description4.setText("");
+        binding.temp4.setText("");
+
+        binding.day5.setText("");
+        binding.description5.setText("");
+        binding.temp5.setText("");
+
+        binding.day6.setText("");
+        binding.description6.setText("");
+        binding.temp6.setText("");
+
+        binding.day7.setText("");
+        binding.description7.setText("");
+        binding.temp7.setText("");
     }
 
     /**
@@ -210,10 +240,67 @@ public class WeatherFragment extends Fragment {
     private void loadTenDayInfo(final JSONObject result) {
         try {
             final JSONArray arr = result.getJSONArray("data");
-            final JSONObject obj = arr.getJSONObject(0);
+
+            // Day 1
+            final JSONObject obj1 = arr.getJSONObject(0);
+            final String temp1 = obj1.getString("temp");
+            final String description1 = obj1.getJSONObject("weather").getString("description");
+            binding.day1.setText(obj1.getString("valid_date"));
+            binding.description1.setText(description1);
+            binding.temp1.setText(temp1);
+
+            // Day 2
             final JSONObject obj2 = arr.getJSONObject(1);
-            Log.d("THE WEATHER 1", obj.toString());
-            Log.d("THE WEATHER 2", obj2.toString());
+            final String temp2 = obj2.getString("temp");
+            final String description2 = obj2.getJSONObject("weather").getString("description");
+            binding.day2.setText(obj2.getString("valid_date"));
+            binding.description2.setText(description2);
+            binding.temp2.setText(temp2);
+
+
+            // Day 3
+            final JSONObject obj3 = arr.getJSONObject(2);
+            final String temp3 = obj3.getString("temp");
+            final String description3 = obj3.getJSONObject("weather").getString("description");
+            binding.day3.setText(obj3.getString("valid_date"));
+            binding.description3.setText(description3);
+            binding.temp3.setText(temp3);
+
+
+            // Day 4
+            final JSONObject obj4 = arr.getJSONObject(3);
+            final String temp4 = obj4.getString("temp");
+            final String description4 = obj4.getJSONObject("weather").getString("description");
+            binding.day4.setText(obj4.getString("valid_date"));
+            binding.description4.setText(description4);
+            binding.temp4.setText(temp4);
+
+
+            // Day 5
+            final JSONObject obj5 = arr.getJSONObject(4);
+            final String temp5 = obj5.getString("temp");
+            final String description5 = obj5.getJSONObject("weather").getString("description");
+            binding.day5.setText(obj5.getString("valid_date"));
+            binding.description5.setText(description5);
+            binding.temp5.setText(temp5);
+
+
+            // Day 6
+            final JSONObject obj6 = arr.getJSONObject(5);
+            final String temp6 = obj6.getString("temp");
+            final String description6 = obj6.getJSONObject("weather").getString("description");
+            binding.day6.setText(obj6.getString("valid_date"));
+            binding.description6.setText(description6);
+            binding.temp6.setText(temp6);
+
+
+            // Day 7
+            final JSONObject obj7 = arr.getJSONObject(6);
+            final String temp7 = obj7.getString("temp");
+            final String description7 = obj7.getJSONObject("weather").getString("description");
+            binding.day7.setText(obj7.getString("valid_date"));
+            binding.description7.setText(description7);
+            binding.temp7.setText(temp7);
         } catch (final JSONException e) {
             e.printStackTrace();
         }
