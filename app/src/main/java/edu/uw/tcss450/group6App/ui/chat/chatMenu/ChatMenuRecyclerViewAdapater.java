@@ -22,6 +22,8 @@ import java.util.List;
 import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentChatCardBinding;
 import edu.uw.tcss450.group6App.model.UserInfoViewModel;
+import edu.uw.tcss450.group6App.ui.home.HomeFragment;
+import edu.uw.tcss450.group6App.ui.home.HomeFragmentDirections;
 
 public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuRecyclerViewAdapater.ChatViewHolder> {
 
@@ -55,8 +57,13 @@ public class ChatMenuRecyclerViewAdapater extends RecyclerView.Adapter<ChatMenuR
         holder.setChat(mChats.get(position));
         holder.binding.buttonEnterChat.setOnClickListener(button -> {
             viewModel.setCurrentChatId(holder.mChat.getChatId());
-            Navigation.findNavController(holder.mView).navigate(
-                    ChatMenuFragmentDirections.actionNavigationChatMenuToNavigationChat());
+            try { //this is a horrible way of implementing this feature. Too bad!
+                Navigation.findNavController(holder.mView).navigate(
+                        ChatMenuFragmentDirections.actionNavigationChatMenuToNavigationChat());
+            }catch(Exception e){
+                Navigation.findNavController(holder.mView).navigate(
+                        HomeFragmentDirections.actionNavigationHomeToNavigationChat());
+            }
             holder.binding.textChatName.setTypeface(null, Typeface.NORMAL);
             this.notifyDataSetChanged();
         });
