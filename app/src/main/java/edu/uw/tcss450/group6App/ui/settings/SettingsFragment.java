@@ -23,6 +23,8 @@ import android.widget.TextView;
 
 import com.google.android.material.badge.BadgeUtils;
 
+import java.util.Objects;
+
 import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentSettingsBinding;
 import edu.uw.tcss450.group6App.model.PushyTokenViewModel;
@@ -64,7 +66,7 @@ public class SettingsFragment extends Fragment {
     }
     private void onClickLogOut(View v){
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         //Setting message manually and performing action on button click
         builder.setMessage("Are you sure you want to log out?")
                 .setCancelable(false)

@@ -55,6 +55,7 @@ public class ThemeFragment extends Fragment {
         radioGroup = binding.getRoot().findViewById(R.id.idRGgroup);
         themeTV = binding.getRoot().findViewById(R.id.idtvTheme);
 
+
         SharedPreferences pref = getActivity().getSharedPreferences("Theme", Context.MODE_PRIVATE);
         boolean isNightMode = pref.getBoolean("isNight", true);
 
@@ -69,6 +70,7 @@ public class ThemeFragment extends Fragment {
                             Toast.makeText(getActivity(), "Already in Light Mode!", Toast.LENGTH_SHORT).show();
                         // on below line we are changing the theme to light mode.
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        getActivity().setTheme(R.style.AppTheme);
                         group.clearCheck();
                         pref.edit().putBoolean("isNight", false).apply();
                         break;
@@ -78,8 +80,9 @@ public class ThemeFragment extends Fragment {
                         themeTV.setText("Dark Theme");
                         if(isNightMode)
                             Toast.makeText(getActivity(), "Already in Dark Mode!", Toast.LENGTH_SHORT).show();
-                        // on below line we are changing the theme to dark mode.
+                        // on below line we are changing the theme to dark mode
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        getActivity().setTheme(R.style.DarkTheme);
                         group.clearCheck();
                         pref.edit().putBoolean("isNight", true).apply();
                         break;
