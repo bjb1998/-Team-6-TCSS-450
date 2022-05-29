@@ -58,7 +58,6 @@
 
     <Button
         android:id="@+id/button_to_register"
-        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
