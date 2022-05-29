@@ -5,15 +5,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentHomeBinding;
@@ -21,6 +29,7 @@ import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
 import edu.uw.tcss450.group6App.model.LocationViewModel;
 import edu.uw.tcss450.group6App.model.UserInfoViewModel;
 import edu.uw.tcss450.group6App.model.WeatherViewModel;
+import edu.uw.tcss450.group6App.ui.chat.chatMenu.ChatMenuViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,9 +38,9 @@ public class HomeFragment extends Fragment {
 
     private WeatherViewModel mWeatherModel;
     private LocationViewModel mLocationModel;
-
+    private ArrayList<String> notifcationList = new ArrayList<>();
     private FragmentHomeBinding binding;
-
+    private View mView;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -58,16 +67,31 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         UserInfoViewModel model = new ViewModelProvider(getActivity())
                 .get(UserInfoViewModel.class);
-
+        mView = view;
         FragmentHomeBinding.bind(getView()).textHello.setText("Hello " + model.getEmail());
 
         mWeatherModel.setLocationModel(mLocationModel);
+
+
+        grabDate();
+        binding.datehome.setText(grabDate());
+        ((TextView)(getView().findViewById(R.id.datehome))).setText(grabDate());
 
         setWeather();
         mWeatherModel.connectGetDaily();
 
 
     }
+
+
+//    private  void setChat(){
+//        mMenuViewModel.addResponseObserver(getViewLifecycleOwner(), result ->
+//        {
+//
+//
+//        }
+//
+//    }
 
     @SuppressLint("SetTextI18n")
     private void setWeather(){
@@ -102,5 +126,17 @@ public class HomeFragment extends Fragment {
                 e.printStackTrace();
             }
         });
+    }
+    private String grabDate() {
+        StringBuilder sb = new StringBuilder();
+        System.currentTimeMillis();
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter= new SimpleDateFormat("MM dd, yyyy");
+        Date date = new Date(System.currentTimeMillis());
+
+        if (formatter.format(date).charAt(1) == '5') sb.append("May");
+        else sb.append("June");
+
+        sb.append(formatter.format(date).substring(2, 11));
+        return sb.toString();
     }
 }
