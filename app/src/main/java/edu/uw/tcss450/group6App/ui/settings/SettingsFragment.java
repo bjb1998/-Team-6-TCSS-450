@@ -1,6 +1,7 @@
 
 package edu.uw.tcss450.group6App.ui.settings;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -64,10 +65,10 @@ public class SettingsFragment extends Fragment {
         binding.buttonLogoutSetting.setOnClickListener(this::onClickLogOut);
 
     }
+    @SuppressLint("ResourceType")
     private void onClickLogOut(View v){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-        //Setting message manually and performing action on button click
         builder.setMessage("Are you sure you want to log out?")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -94,14 +95,11 @@ public class SettingsFragment extends Fragment {
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //  Action for 'Cancel' Button
                         dialog.cancel();
                     }
                 });
-        //Creating dialog box
         AlertDialog alert = builder.create();
-        //Setting the title manually
-        alert.setTitle("Are You Sure ?");
+        alert.setTitle("Log out");
         alert.show();
     }
 }

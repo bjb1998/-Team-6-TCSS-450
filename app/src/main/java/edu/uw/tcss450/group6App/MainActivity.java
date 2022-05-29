@@ -151,8 +151,6 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-
-            //signOut(); remove
             openSettings();
             return true;
         }
@@ -194,24 +192,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * Alert the user with an 'are you sure' style popup when they want to exit the app.
-     */
+
+    @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("EXIT")
-                .setMessage("Are you sure?")
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        MainActivity.super.onBackPressed();
-                        signOut();
-                    }
-
-                }).setNegativeButton("Cancel", null);
-
-        AlertDialog alert = builder.create();
-        alert.show();
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
