@@ -150,7 +150,7 @@ public class WeatherFragment extends Fragment {
         binding.sunrise.setText("");
         binding.sunset.setText("");
         binding.temperature.setText("");
-        binding.location.setText("");
+        //binding.location.setText("");
         binding.description.setText("");
 
     }
@@ -211,7 +211,9 @@ public class WeatherFragment extends Fragment {
         try {
             final JSONArray arr = result.getJSONArray("data");
             final JSONObject obj = arr.getJSONObject(0);
-            Log.d("THE WEATHER", obj.toString());
+            final JSONObject obj2 = arr.getJSONObject(1);
+            Log.d("THE WEATHER 1", obj.toString());
+            Log.d("THE WEATHER 2", obj2.toString());
         } catch (final JSONException e) {
             e.printStackTrace();
         }
