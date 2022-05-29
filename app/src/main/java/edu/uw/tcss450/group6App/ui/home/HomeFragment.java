@@ -80,10 +80,8 @@ public class HomeFragment extends Fragment {
         setWeather();
         mWeatherModel.connectGetDaily();
 
-        FragmentHomeBinding.bind(getView()).textContacts.setText("Welcome " + model.getEmail() + " !");
 
-
-            }
+    }
 
 
 //    private  void setChat(){
