@@ -9,12 +9,9 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.android.volley.Request;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -93,7 +90,6 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_weather, container, false);
         binding = FragmentWeatherBinding.inflate(inflater);
         return binding.getRoot();
     }
@@ -102,13 +98,6 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-        //FragmentLocationBinding binding = FragmentLocationBinding.bind(getView());
-
-        // TODO: lines below displayed the lat and long of location from lab 6
-        //mLocationModel.addLocationObserver(getViewLifecycleOwner(), location ->
-                //binding.textLatLong.setText(location.toString()));
 
         mWeatherModel.setLocationModel(mLocationModel);
 
@@ -127,7 +116,7 @@ public class WeatherFragment extends Fragment {
                     loadTodayInfo(result);
                     break;
                 case 1:
-                    loadTenDayInfo(result);
+                    loadSevenDayInfo(result);
                     break;
             }
         });
@@ -135,7 +124,7 @@ public class WeatherFragment extends Fragment {
         mWeatherModel.connectGetDaily();
         //binding.todayButton.setOnClickListener(button -> mWeatherModel.connectGetDaily());
 
-        // TODO 10 day forecast
+        // 7 day forecast
         binding.tenDaysButton.setOnClickListener(button -> {
             clearText();
             buttonChoice = 1;
@@ -237,7 +226,7 @@ public class WeatherFragment extends Fragment {
 
     }
 
-    private void loadTenDayInfo(final JSONObject result) {
+    private void loadSevenDayInfo(final JSONObject result) {
         try {
             final JSONArray arr = result.getJSONArray("data");
 
@@ -304,6 +293,17 @@ public class WeatherFragment extends Fragment {
         } catch (final JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Converts degrees from Celsius to Fahrenheit
+     * @param inC degrees in Celsius
+     * @return degrees in Fahrenheit
+     */
+    private double convertToFahrenheit(final double inC) {
+
+        return inC * 1.8 + 32;
+
     }
 
 
