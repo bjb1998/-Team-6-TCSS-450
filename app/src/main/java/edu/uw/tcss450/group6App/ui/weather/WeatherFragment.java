@@ -24,6 +24,7 @@ import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
 import edu.uw.tcss450.group6App.model.LocationViewModel;
 import edu.uw.tcss450.group6App.model.WeatherViewModel;
+import static edu.uw.tcss450.group6App.MainActivity.mLocationModel;
 
 /**
  * Contains all weather related functionality.
@@ -36,7 +37,6 @@ public class WeatherFragment extends Fragment {
 
 
     private WeatherViewModel mWeatherModel;
-    private LocationViewModel mLocationModel;
 
     private FragmentWeatherBinding binding;
 
@@ -85,8 +85,6 @@ public class WeatherFragment extends Fragment {
         }
         mWeatherModel = new ViewModelProvider(requireActivity())
                 .get(WeatherViewModel.class);
-        mLocationModel = new ViewModelProvider(requireActivity())
-                .get(LocationViewModel.class);
     }
 
     @Override
@@ -102,15 +100,6 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-        //FragmentLocationBinding binding = FragmentLocationBinding.bind(getView());
-
-        // TODO: lines below displayed the lat and long of location from lab 6
-        //mLocationModel.addLocationObserver(getViewLifecycleOwner(), location ->
-                //binding.textLatLong.setText(location.toString()));
-
-        mWeatherModel.setLocationModel(mLocationModel);
 
         binding.todayButton.setOnClickListener(button -> {
             clearText();
