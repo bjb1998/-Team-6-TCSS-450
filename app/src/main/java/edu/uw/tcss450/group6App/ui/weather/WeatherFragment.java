@@ -136,7 +136,7 @@ public class WeatherFragment extends Fragment {
         binding.sunset.setText("");
         binding.temperature.setText("");
         binding.description.setText("");
-
+        binding.weatherIcon.setImageResource(0);
     }
 
     private void clearTenDayForecastText() {
@@ -204,7 +204,7 @@ public class WeatherFragment extends Fragment {
             // temp
             final StringBuilder temp = new StringBuilder();
             double t = obj.getDouble("temp");
-            t = t * 1.8 + 32;
+            t = convertToFahrenheit(t);
             final String degree = "" + (char) 176;
             temp.append("Temp: " + String.format("%.2f", t) + degree +" F");
 
@@ -221,22 +221,34 @@ public class WeatherFragment extends Fragment {
 
     }
 
+    /**
+     * Loads the seven day forecast into the fragment
+     * @param result payload form weather.io
+     */
     private void loadSevenDayInfo(final JSONObject result) {
         try {
+            final String degree = "" + (char) 176;
+
             final JSONArray arr = result.getJSONArray("data");
 
             // Day 1
             final JSONObject obj1 = arr.getJSONObject(0);
-            final String temp1 = obj1.getString("temp");
             final String description1 = obj1.getJSONObject("weather").getString("description");
+            final StringBuilder temp1 = new StringBuilder();
+            double t1 = obj1.getDouble("temp");
+            t1 = convertToFahrenheit(t1);
+            temp1.append("Temp: " + String.format("%.2f", t1) + degree +" F");
             binding.day1.setText(obj1.getString("valid_date"));
             binding.description1.setText(description1);
             binding.temp1.setText(temp1);
 
             // Day 2
             final JSONObject obj2 = arr.getJSONObject(1);
-            final String temp2 = obj2.getString("temp");
             final String description2 = obj2.getJSONObject("weather").getString("description");
+            final StringBuilder temp2 = new StringBuilder();
+            double t2 = obj2.getDouble("temp");
+            t2 = convertToFahrenheit(t2);
+            temp2.append("Temp: " + String.format("%.2f", t2) + degree +" F");
             binding.day2.setText(obj2.getString("valid_date"));
             binding.description2.setText(description2);
             binding.temp2.setText(temp2);
@@ -244,8 +256,11 @@ public class WeatherFragment extends Fragment {
 
             // Day 3
             final JSONObject obj3 = arr.getJSONObject(2);
-            final String temp3 = obj3.getString("temp");
             final String description3 = obj3.getJSONObject("weather").getString("description");
+            final StringBuilder temp3 = new StringBuilder();
+            double t3 = obj3.getDouble("temp");
+            t3 = convertToFahrenheit(t3);
+            temp3.append("Temp: " + String.format("%.2f", t3) + degree +" F");
             binding.day3.setText(obj3.getString("valid_date"));
             binding.description3.setText(description3);
             binding.temp3.setText(temp3);
@@ -253,8 +268,11 @@ public class WeatherFragment extends Fragment {
 
             // Day 4
             final JSONObject obj4 = arr.getJSONObject(3);
-            final String temp4 = obj4.getString("temp");
             final String description4 = obj4.getJSONObject("weather").getString("description");
+            final StringBuilder temp4 = new StringBuilder();
+            double t4 = obj4.getDouble("temp");
+            t4 = convertToFahrenheit(t4);
+            temp4.append("Temp: " + String.format("%.2f", t4) + degree +" F");
             binding.day4.setText(obj4.getString("valid_date"));
             binding.description4.setText(description4);
             binding.temp4.setText(temp4);
@@ -262,8 +280,11 @@ public class WeatherFragment extends Fragment {
 
             // Day 5
             final JSONObject obj5 = arr.getJSONObject(4);
-            final String temp5 = obj5.getString("temp");
             final String description5 = obj5.getJSONObject("weather").getString("description");
+            final StringBuilder temp5 = new StringBuilder();
+            double t5 = obj5.getDouble("temp");
+            t5 = convertToFahrenheit(t5);
+            temp5.append("Temp: " + String.format("%.2f", t5) + degree +" F");
             binding.day5.setText(obj5.getString("valid_date"));
             binding.description5.setText(description5);
             binding.temp5.setText(temp5);
@@ -271,8 +292,11 @@ public class WeatherFragment extends Fragment {
 
             // Day 6
             final JSONObject obj6 = arr.getJSONObject(5);
-            final String temp6 = obj6.getString("temp");
             final String description6 = obj6.getJSONObject("weather").getString("description");
+            final StringBuilder temp6 = new StringBuilder();
+            double t6 = obj6.getDouble("temp");
+            t6 = convertToFahrenheit(t6);
+            temp6.append("Temp: " + String.format("%.2f", t6) + degree +" F");
             binding.day6.setText(obj6.getString("valid_date"));
             binding.description6.setText(description6);
             binding.temp6.setText(temp6);
@@ -280,11 +304,15 @@ public class WeatherFragment extends Fragment {
 
             // Day 7
             final JSONObject obj7 = arr.getJSONObject(6);
-            final String temp7 = obj7.getString("temp");
             final String description7 = obj7.getJSONObject("weather").getString("description");
+            final StringBuilder temp7 = new StringBuilder();
+            double t7 = obj7.getDouble("temp");
+            t7 = convertToFahrenheit(t7);
+            temp7.append("Temp: " + String.format("%.2f", t7) + degree +" F");
             binding.day7.setText(obj7.getString("valid_date"));
             binding.description7.setText(description7);
             binding.temp7.setText(temp7);
+
         } catch (final JSONException e) {
             e.printStackTrace();
         }
