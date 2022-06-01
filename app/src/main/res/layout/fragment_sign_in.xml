@@ -68,13 +68,16 @@
 
     <ImageView
         android:id="@+id/image_login_graphic"
-        android:layout_width="108dp"
-        android:layout_height="117dp"
-        android:layout_marginEnd="152dp"
+        android:layout_width="161dp"
+        android:layout_height="157dp"
         android:layout_marginBottom="101dp"
         android:src="@drawable/ic_graphic_login"
         app:layout_constraintBottom_toTopOf="@+id/edit_email"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:tint="@color/secondaryColor" />
 
     <Switch
         android:id="@+id/switch_signin"
@@ -86,7 +89,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_sign_in"
-        tools:text="@string/switch_sign_in" />
+        tools:text="@string/switch_sign_in"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
