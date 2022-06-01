@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -214,11 +215,29 @@ public class WeatherFragment extends Fragment {
             binding.temperature.setText(temp.toString());
             binding.location.setText(local.toString());
             binding.description.setText(weather.toString());
-            binding.weatherIcon.setImageResource(R.mipmap.ic_clear_sky);
+            //binding.weatherIcon.setImageResource(R.mipmap.ic_clear_sky);
+            setImageResource(weather.toString());
         } catch (final JSONException e) {
             e.printStackTrace();
         }
 
+    }
+
+    /**
+     * Sets the proper weather icon depending on the description from the JSON payload
+     * @param description of the weather
+     */
+    private void setImageResource(final String description) {
+        System.out.println("Description is: " + description);
+
+        switch (description) {
+            case "Clear sky":
+                binding.weatherIcon.setImageResource(R.mipmap.ic_clear_sky);
+                break;
+            default:
+                binding.weatherIcon.setImageResource(R.mipmap.ic_drizzle);
+                break;
+        }
     }
 
     /**
