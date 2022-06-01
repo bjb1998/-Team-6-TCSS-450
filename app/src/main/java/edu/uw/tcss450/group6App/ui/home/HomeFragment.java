@@ -37,6 +37,7 @@ import edu.uw.tcss450.group6App.model.WeatherViewModel;
 import edu.uw.tcss450.group6App.ui.chat.chatMenu.ChatInfo;
 import edu.uw.tcss450.group6App.ui.chat.chatMenu.ChatMenuRecyclerViewAdapater;
 import edu.uw.tcss450.group6App.ui.chat.chatMenu.ChatMenuViewModel;
+import static edu.uw.tcss450.group6App.MainActivity.mLocationModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,8 +45,6 @@ import edu.uw.tcss450.group6App.ui.chat.chatMenu.ChatMenuViewModel;
 public class HomeFragment extends Fragment {
 
     private WeatherViewModel mWeatherModel;
-    private LocationViewModel mLocationModel;
-    private ArrayList<String> notifcationList = new ArrayList<>();
     private FragmentHomeBinding binding;
     public static ChatMenuViewModel mChatMenuViewModel;
     private View mView;
@@ -58,8 +57,6 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mWeatherModel = new ViewModelProvider(requireActivity())
                 .get(WeatherViewModel.class);
-        mLocationModel = new ViewModelProvider(requireActivity())
-                .get(LocationViewModel.class);
         mChatMenuViewModel = new ViewModelProvider(getActivity())
                 .get(ChatMenuViewModel.class);
     }
@@ -79,8 +76,6 @@ public class HomeFragment extends Fragment {
                 .get(UserInfoViewModel.class);
         mView = view;
         FragmentHomeBinding.bind(getView()).textHello.setText("Hello " + model.getEmail());
-
-        mWeatherModel.setLocationModel(mLocationModel);
 
 
         grabDate();

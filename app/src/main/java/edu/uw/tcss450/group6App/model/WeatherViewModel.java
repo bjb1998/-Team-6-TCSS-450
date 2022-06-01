@@ -1,5 +1,7 @@
 package edu.uw.tcss450.group6App.model;
 
+import static edu.uw.tcss450.group6App.MainActivity.mLocationModel;
+
 import android.app.Application;
 import android.location.Location;
 import android.util.Log;
@@ -34,20 +36,11 @@ public class WeatherViewModel extends AndroidViewModel {
     private static final String API_KEY = "d76b1605bb534d7ea82ace219ff60b96";
 
     private final MutableLiveData<JSONObject> mResponse;
-    private LocationViewModel mLocationModel;
 
     public WeatherViewModel(@NonNull Application application) {
         super(application);
         mResponse = new MutableLiveData<>();
         mResponse.setValue(new JSONObject());
-    }
-
-    /**
-     * Setter for the LocationViewModel used to obtain local users weather data.
-     * @param model LocationViewModel
-     */
-    public void setLocationModel(final LocationViewModel model) {
-        mLocationModel = model;
     }
 
     public void addResponseObserver(@NonNull LifecycleOwner owner,
@@ -82,8 +75,10 @@ public class WeatherViewModel extends AndroidViewModel {
 
     public Request<JSONObject> connectGet10Day() {
         final Location location = mLocationModel.getCurrentLocation();
-        final String tacoma = "city=Tacoma,WA";
-        String url = "https://api.weatherbit.io/v2.0/forecast/daily?" + tacoma + "&key=" + API_KEY;
+        String url = "https://api.weatherbit.io/v2.0/forecast/daily?" + "lat=" + location.getLatitude() +
+                "&lon=" + location.getLongitude() + "&key=" + API_KEY;
+        Log.d("LAT", "" + location.getLatitude());
+        Log.d("LONG", "" + location.getLongitude());
 
         Request<JSONObject> request = new JsonObjectRequest(
                 Request.Method.GET,

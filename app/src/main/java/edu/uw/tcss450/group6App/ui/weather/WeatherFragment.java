@@ -21,6 +21,7 @@ import edu.uw.tcss450.group6App.R;
 import edu.uw.tcss450.group6App.databinding.FragmentWeatherBinding;
 import edu.uw.tcss450.group6App.model.LocationViewModel;
 import edu.uw.tcss450.group6App.model.WeatherViewModel;
+import static edu.uw.tcss450.group6App.MainActivity.mLocationModel;
 
 /**
  * Contains all weather related functionality.
@@ -33,7 +34,6 @@ public class WeatherFragment extends Fragment {
 
 
     private WeatherViewModel mWeatherModel;
-    private LocationViewModel mLocationModel;
 
     private FragmentWeatherBinding binding;
 
@@ -82,8 +82,6 @@ public class WeatherFragment extends Fragment {
         }
         mWeatherModel = new ViewModelProvider(requireActivity())
                 .get(WeatherViewModel.class);
-        mLocationModel = new ViewModelProvider(requireActivity())
-                .get(LocationViewModel.class);
     }
 
     @Override
@@ -98,9 +96,6 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        mWeatherModel.setLocationModel(mLocationModel);
-
         binding.todayButton.setOnClickListener(button -> {
             clearText();
             clearTenDayForecastText();

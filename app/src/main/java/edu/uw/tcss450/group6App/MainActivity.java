@@ -20,6 +20,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -28,6 +29,7 @@ import android.view.MenuItem;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.badge.BadgeDrawable;
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     // Will use this call back to decide what to do when a location change is detected
     private LocationCallback mLocationCallback;
     //The ViewModel that will store the current location
-    private LocationViewModel mLocationModel;
+    public static LocationViewModel mLocationModel;
 
 
     private MainPushMessageReceiver mPushMessageReceiver;
@@ -85,6 +87,45 @@ public class MainActivity extends AppCompatActivity {
         currentUserInfo = new ViewModelProvider(this,
                 new UserInfoViewModel.UserInfoViewModelFactory(args.getEmail(), args.getJwt())
         ).get(UserInfoViewModel.class);
+
+        mLocationModel = new ViewModelProvider(this)
+                .get(LocationViewModel.class);
+
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION
+                            , Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_LOCATIONS);
+        } else {
+            requestLocation();
+        }
+
+        mLocationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult == null) {
+                    return;
+                }
+                for (Location location : locationResult.getLocations()) {
+                    // Update UI with location data
+                    // ...
+                    Log.d("LOCATION UPDATE!", location.toString());
+                    if (mLocationModel == null) {
+                        mLocationModel = new ViewModelProvider(MainActivity.this)
+                                .get(LocationViewModel.class);
+                    }
+                    mLocationModel.setLocation(location);
+                }
+            }
+
+            ;
+        };
+        createLocationRequest();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -122,20 +163,6 @@ public class MainActivity extends AppCompatActivity {
                 badge.setVisible(false);
             }
         });
-
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION
-                            , Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_LOCATIONS);
-        } else {
-            //The user has already allowed the use of Locations. Get the current location.
-            requestLocation();
-        }
 
         setAppTheme();
     }
@@ -176,19 +203,53 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+
         if (mPushMessageReceiver == null) {
             mPushMessageReceiver = new MainPushMessageReceiver();
         }
         IntentFilter iFilter = new IntentFilter(PushReceiver.RECEIVED_NEW_MESSAGE);
         registerReceiver(mPushMessageReceiver, iFilter);
+        startLocationUpdates();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (mPushMessageReceiver != null){
+        if (mPushMessageReceiver != null) {
             unregisterReceiver(mPushMessageReceiver);
         }
+        stopLocationUpdates();
+    }
+
+    private void createLocationRequest() {
+        mLocationRequest = LocationRequest.create();
+        // Sets the desired interval for active location updates. This interval is
+        // inexact. You may not receive updates at all if no location sources are available, or
+        // you may receive them slower than requested. You may also receive updates faster than
+        // requested if other applications are requesting location at a faster interval.
+        mLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS);
+        // Sets the fastest rate for active location updates. This interval is exact, and your
+        // application will never receive updates faster than this value.
+        mLocationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+    }
+
+    private void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+            return;
+        mFusedLocationClient.requestLocationUpdates(mLocationRequest,
+                mLocationCallback,
+                null /* Looper */);
+    }
+    /**
+     * Removes location updates from the FusedLocationApi.
+     */
+    private void stopLocationUpdates() {
+        // It is a good practice to remove location requests when the activity is in a paused or
+        // stopped state. Doing so helps battery performance and is especially
+        // recommended in applications that request frequent location updates.
+        mFusedLocationClient.removeLocationUpdates(mLocationCallback);
     }
 
 
@@ -266,6 +327,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void requestLocation() {
+        Log.d("LOCATION WHERE YOU AT", "---------------------");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -284,21 +346,12 @@ public class MainActivity extends AppCompatActivity {
                                             .get(LocationViewModel.class);
                                 }
                                 mLocationModel.setLocation(location);
-                            }
+                            }else
+                                Log.d("LOCATION", "LOCATION IS NULL");
                         }
                     });
         }
-    }
-
-
-    private void signOut() {
-        SharedPreferences prefs =
-                getSharedPreferences(
-                        getString(R.string.keys_shared_prefs),
-                        Context.MODE_PRIVATE);
-        prefs.edit().remove(getString(R.string.keys_prefs_jwt)).apply();
-        //End the app completely
-        finishAndRemoveTask();
+        Log.d("LOCATION WHERE YOU AT", "---------------------");
     }
 
     private void setAppTheme(){
