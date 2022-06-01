@@ -6,7 +6,7 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/secondaryColor</item>
-        <item name="colorPrimaryDark">#001a33</item>
+        <item name="colorPrimaryDark">#3b444b</item>
         <item name="colorAccent">@color/red</item>
         <item name="actionMenuTextColor">#fff</item>
         <item name="backgroundColor">#fcfcfc</item>

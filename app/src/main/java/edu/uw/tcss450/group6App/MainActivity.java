@@ -174,11 +174,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            openSettings();
+        if (id == R.id.action_menu) {
+            openMenu();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -187,17 +194,9 @@ public class MainActivity extends AppCompatActivity {
     /**
      * A Open the setting fragment when the settings button is clicked
      */
-    public void openSettings() {
+    public void openMenu() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        navController.navigate(R.id.navigation_settings);
-    }
-
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+        navController.navigate(R.id.navigation_menu);
     }
 
     @Override

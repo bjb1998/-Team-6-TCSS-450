@@ -9,10 +9,10 @@
     app:startDestination="@id/navigation_home">
     <fragment
 
-        android:id="@+id/navigation_settings"
-    android:name="edu.uw.tcss450.group6App.ui.settings.SettingsFragment"
-    android:label="@string/action_settings"
-    tools:layout="@layout/fragment_settings" />
+        android:id="@+id/navigation_menu"
+    android:name="edu.uw.tcss450.group6App.ui.settings.MenuFragment"
+    android:label="@string/action_menu"
+    tools:layout="@layout/fragment_menu" />
     <action
         android:id="@+id/action_navigation_settings_to_theme"
         app:destination="@id/navigation_settings_themes" />
@@ -61,8 +61,8 @@
 
     <fragment
         android:id="@+id/navigation_settings_themes"
-        android:name="edu.uw.tcss450.group6App.ui.settings.ThemeFragment"
-        android:label="@string/action_settings_themes"
-        tools:layout="@layout/fragment_themes" />
+        android:name="edu.uw.tcss450.group6App.ui.settings.SettingsFragment"
+        android:label="@string/action_settings"
+        tools:layout="@layout/fragment_settings" />
 
 </navigation>
