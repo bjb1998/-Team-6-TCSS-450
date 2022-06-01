@@ -9,9 +9,8 @@
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/drawable/ic_more_grey_24dp.xml" value="0.1785" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/drawable/ic_settings_grey_24.xml" value="0.102" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/activity_auth.xml" value="0.13333333333333333" />
-        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
-        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat.xml" value="0.18" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat.xml" value="0.1" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat_card.xml" value="0.371875" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat_menu.xml" value="0.371875" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat_message.xml" value="0.371875" />
@@ -23,10 +22,10 @@
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_home.xml" value="0.1403985507246377" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_navigation_settings.xml" value="0.13496376811594202" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_register.xml" value="0.16666666666666666" />
-        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_settings.xml" value="0.1" />
-        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_sign_in.xml" value="0.1403985507246377" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_sign_in.xml" value="0.25" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_theme.xml" value="0.17255434782608695" />
-        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_themes.xml" value="0.18" />
+        <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_themes.xml" value="0.33" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/fragment_weather.xml" value="0.1403985507246377" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/layout/settings_activity.xml" value="0.1" />
         <entry key="..\:/School/2022/Spring2022/TCSS_450/-Team-6-TCSS-450/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
@@ -58,7 +57,6 @@
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_blog_card.xml" value="0.3140625" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat.xml" value="0.3140625" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat_card.xml" value="0.75" />
-        <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat_menu.xml" value="0.2695035460992908" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_chat_message.xml" value="0.33" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contact_card.xml" value="0.5" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_contact_pending.xml" value="1.0" />

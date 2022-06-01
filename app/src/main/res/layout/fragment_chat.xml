@@ -18,11 +18,14 @@
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
-        android:textColor="@color/black"
+        android:textColor="@color/colorOffWhite"
         android:backgroundTint="@color/secondaryDarkColor"
+        android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_send"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 
     <ImageButton
         android:id="@+id/button_send"
