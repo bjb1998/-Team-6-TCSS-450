@@ -44,6 +44,7 @@
         <entry key="..\:/Users/Robert/AndroidStudioProjects/-Team-6-TCSS-450/app/src/main/res/layout/fragment_sign_in.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/Robert/AndroidStudioProjects/-Team-6-TCSS-450/app/src/main/res/layout/fragment_weather.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Robert/AndroidStudioProjects/-Team-6-TCSS-450/app/src/main/res/menu/bottom_nav_menu.xml" value="0.14722222222222223" />
+        <entry key="..\:/Users/Robert/AndroidStudioProjects/-Team-6-TCSS-450/app/src/main/res/mipmap-anydpi-v26/ic_Overcast_clouds.xml" value="0.1965" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS 450/Labs/Group-6-Project/app/src/main/res/layout/activity_auth.xml" value="0.3140625" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS 450/Labs/Group-6-Project/app/src/main/res/layout/fragment_home.xml" value="0.3140625" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS 450/Labs/Group-6-Project/app/src/main/res/layout/fragment_register.xml" value="0.3140625" />
@@ -73,6 +74,9 @@
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/layout/fragment_weather.xml" value="0.3140625" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3140625" />
         <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/menu/toolbar.xml" value="0.33" />
+        <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/mipmap-anydpi-v26/ic_moderate_rain.xml" value="0.3135" />
+        <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/mipmap-anydpi-v26/ic_overcast_clouds.xml" value="0.233" />
+        <entry key="..\:/Users/eddie/Desktop/My_Stuff/School_Crap/College/UW/2022/Spring_2022/TCSS_450/Labs/-Team-6-TCSS-450/app/src/main/res/mipmap-anydpi-v26/ic_overcast_clouds_round.xml" value="0.3135" />
       </map>
     </option>
   </component>
