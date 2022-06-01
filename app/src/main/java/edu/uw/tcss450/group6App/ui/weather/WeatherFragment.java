@@ -86,7 +86,7 @@ public class WeatherFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentWeatherBinding.inflate(inflater);
@@ -215,7 +215,6 @@ public class WeatherFragment extends Fragment {
             binding.temperature.setText(temp.toString());
             binding.location.setText(local.toString());
             binding.description.setText(weather.toString());
-            //binding.weatherIcon.setImageResource(R.mipmap.ic_clear_sky);
             setImageResource(weather.toString());
         } catch (final JSONException e) {
             e.printStackTrace();
@@ -234,8 +233,20 @@ public class WeatherFragment extends Fragment {
             case "Clear sky":
                 binding.weatherIcon.setImageResource(R.mipmap.ic_clear_sky);
                 break;
-            default:
+            case "Light Rain":
+                binding.weatherIcon.setImageResource(R.mipmap.ic_light_rain);
+                break;
+            case "Drizzle":
                 binding.weatherIcon.setImageResource(R.mipmap.ic_drizzle);
+                break;
+            case "Moderate Rain":
+                binding.weatherIcon.setImageResource(R.mipmap.ic_moderate_rain);
+                break;
+            case "Overcast clouds":
+                binding.weatherIcon.setImageResource(R.mipmap.ic_overcast_clouds);
+
+            default:
+                binding.weatherIcon.setImageResource(R.mipmap.ic_overcast_clouds);
                 break;
         }
     }
