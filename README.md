@@ -9,4 +9,4 @@ Hao Dinh\
 Anas Gherfal\
 Eyob Fenta\
 
-This app utilizes a custom webservice to handle suer interaction, regitration, and chatting, link is here: https://github.com/bjb1998/team-6-tcss-450-web
+This app utilizes a custom webservice to handle suer interaction, regitration, and chatting, link is here: https://github.com/bjb1998/PointlessChat-Web
